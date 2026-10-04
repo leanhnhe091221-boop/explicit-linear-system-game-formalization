@@ -1,0 +1,15 @@
+name = "thom_game"
+version = "0.1.0"
+defaultTargets = ["ThomGame"]
+requiresModuleSystem = true
+
+[leanOptions]
+autoImplicit = false
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "16efc2c756299924184fe015f6384ad6538d42c7"
+
+[[lean_lib]]
+name = "ThomGame"

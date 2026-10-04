@@ -1,0 +1,153 @@
+✔ [2689/3146] Built ThomGame.Groups.CentralizerEmbedding (7.8s)
+✔ [2708/3155] Built ThomGame.Groups.CentralQuotient (8.8s)
+✔ [2749/3161] Built ThomGame.Analysis.RankOneInvolution (12s)
+✔ [2782/3163] Built ThomGame.Pictures.SeamCircuits (9.8s)
+✔ [2804/3163] Built ThomGame.Groups.InvolutionEven (10s)
+✔ [2809/3163] Built ThomGame.Pictures.SolutionSmoothing (8.9s)
+✔ [2835/3163] Built ThomGame.Pictures.BoundaryOnlyDiagram (9.5s)
+✔ [2846/3172] Built ThomGame.Pictures.ReducedCircuits (9.3s)
+✔ [2852/3175] Built ThomGame.Groups.SolutionEven (9.3s)
+✔ [2860/3175] Built ThomGame.Pictures.ReducedComponents (9.7s)
+✔ [2868/3183] Built ThomGame.Construction.WheelSmoothing (13s)
+✔ [3047/3229] Built ThomGame.Construction.WheelEven (13s)
+✔ [3291/3303] Built ThomGame.Construction.WheelComponents (13s)
+✔ [3292/3333] Built ThomGame.Construction.WheelSunOrientation (13s)
+✔ [3824/3939] Built ThomGame.Construction.MatrixApproximationReduction (13s)
+✔ [4081/4421] Built ThomGame.Construction.ApproximationExample (12s)
+✔ [4131/4429] Built ThomGame.Analysis.MatrixBlockDimensionTrimming (8.6s)
+✔ [4141/4429] Built ThomGame.Analysis.MatrixInternalNormalTrace (17s)
+✔ [4169/4444] Built ThomGame.Analysis.MatrixFiniteInternalCommutants (15s)
+✔ [4205/4448] Built ThomGame.Analysis.MatrixStandardBlockCutProjections (14s)
+✔ [4258/4452] Built ThomGame.Analysis.MatrixNormalExpectation (19s)
+✔ [4267/4452] Built ThomGame.Analysis.MatrixUltraproductALTSelection (13s)
+✔ [4281/4452] Built ThomGame.Analysis.MatrixFiniteInternalUnitaryLifting (18s)
+✔ [4294/4457] Built ThomGame.Analysis.MatrixSubalgebraCutProjections (12s)
+✔ [4309/4457] Built ThomGame.Analysis.MatrixThomIntrinsicMultiplicityLimits (15s)
+✔ [4319/4465] Built ThomGame.Analysis.MatrixThomExactIntertwinerLimits (14s)
+✔ [4372/4495] Built ThomGame.Analysis.MatrixUnitaryConjugationDistance (12s)
+✔ [4440/4514] Built ThomGame.Analysis.MatrixThomStarMultiplicityLimits (14s)
+✔ [4446/4514] Built ThomGame.Analysis.MatrixALTSpectralPruning (14s)
+✔ [4462/4521] Built ThomGame.Analysis.MatrixThomCornerLimits (12s)
+✔ [4483/4527] Built ThomGame.Analysis.MatrixProductCornerCompression (14s)
+✔ [4484/4527] Built ThomGame.Analysis.MatrixALTFiniteInternality (16s)
+✔ [4487/4527] Built ThomGame.Analysis.MatrixNestedFrameScalarAlgebra (12s)
+✔ [4492/4531] Built ThomGame.Analysis.MatrixUnitBallHausdorffRescale (13s)
+✔ [4521/4545] Built ThomGame.Analysis.MatrixCanonicalCornerFrame (14s)
+✔ [4523/4545] Built ThomGame.Analysis.MatrixSubalgebraDimensionCut (13s)
+✔ [4524/4545] Built ThomGame.Analysis.MatrixThomModifiedMultiplicity (12s)
+✔ [4526/4545] Built ThomGame.Analysis.MatrixFrameMoveToCorner (15s)
+✔ [4528/4547] Built ThomGame.Analysis.MatrixCanonicalDimensionEquivalence (20s)
+✔ [4529/4548] Built ThomGame.Analysis.MatrixThomGeneralRelative (14s)
+✔ [4533/4549] Built ThomGame.Analysis.MatrixDimensionCutHausdorff (14s)
+✔ [4537/4549] Built ThomGame.Analysis.MatrixThomModifiedStarBlocks (14s)
+✔ [4538/4551] Built ThomGame.Analysis.MatrixThomGeneralHausdorff (14s)
+✔ [4541/4553] Built ThomGame.Analysis.MatrixDimensionCutLimits (14s)
+✔ [4543/4554] Built ThomGame.Analysis.MatrixDimensionCutTarget (14s)
+✔ [4547/4554] Built ThomGame.Analysis.MatrixThomGeneralTracialCorrection (16s)
+✔ [4983/5030] Built ThomGame.Analysis.MatrixDimensionCutInternalEquality (13s)
+✔ [5023/5041] Built ThomGame.Analysis.MatrixDimensionCutTargetHausdorff (14s)
+✔ [5027/5045] Built ThomGame.Analysis.MatrixBoundedScaleRankChangeLimits (17s)
+✔ [5182/5227] Built ThomGame.Analysis.MatrixDimensionCutTargetLimits (13s)
+✔ [5188/5296] Built ThomGame.Analysis.MatrixThomFiniteTheorem4_2 (20s)
+✔ [5210/5355] Built ThomGame.Groups.IntegerSteinbergPresentation (9.9s)
+⚠ [5325/5355] Replayed ThomGame.Quantum.FinitePOVMDilation
+warning: ThomGame/Quantum/FinitePOVMDilation.lean:21:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMDilation.lean:22:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [5326/5355] Replayed ThomGame.Quantum.CommutingPOVMStrategy
+warning: ThomGame/Quantum/CommutingPOVMStrategy.lean:57:0: automatically included section variable(s) unused in theorem `ThomGame.Quantum.CommutingPOVMStrategy.correlation_normalized`:
+  [CompleteSpace H]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace H] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Quantum/CommutingPOVMStrategy.lean:67:0: automatically included section variable(s) unused in theorem `ThomGame.Quantum.CommutingPOVMStrategy.noSignalling`:
+  [CompleteSpace H]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace H] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5328/5355] Replayed ThomGame.Quantum.FinitePOVMCoordinates
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:53:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:54:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:55:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:58:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [hz] at hψ
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:61:6: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:59:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:66:6: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:64:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+✔ [5332/5355] Built ThomGame.Analysis.IntegerTorusLatticeCharacters (16s)
+✔ [5340/5355] Built ThomGame.Construction.PaperStrategyRelations (11s)
+✔ [5341/5355] Built ThomGame.Analysis.MatrixCanonicalDimensionStability (19s)
+✔ [5348/5355] Built ThomGame.Construction.PaperSpectralProjection (13s)
+✔ [5352/5355] Built ThomGame.Construction.IntegerSteinbergApproximationReduction (18s)
+✔ [5353/5355] Built ThomGame.Analysis.MatrixCanonicalDimensionInternality (18s)
+✔ [5354/5355] Built ThomGame (12s)
+Build completed successfully (5355 jobs).
