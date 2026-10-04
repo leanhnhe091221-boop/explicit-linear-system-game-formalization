@@ -1174,3 +1174,4 @@ public import ThomGame.Analysis.NegativeCentralAssignment
 public import ThomGame.Quantum.NearPerfectApproximation
 public import ThomGame.Construction.PaperQuantumGap
 public import ThomGame.Construction.PaperPOVMGap
+public import ThomGame.Construction.PaperValueCorollaries

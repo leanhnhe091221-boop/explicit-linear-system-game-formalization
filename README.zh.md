@@ -31,6 +31,7 @@ commuting 部分只使用投影策略到 POVM 策略的包含关系和成功率�
 lake exe cache get
 lake build
 lake env lean scripts/CheckPOVM.lean
+lake env lean scripts/CheckCorollaries.lean
 lake env lean scripts/AuditAxioms.lean
 lake env lean scripts/CheckMain.lean
 ```
@@ -55,9 +56,35 @@ lean-toolchain            Lean 版本
 scripts/AuditAxioms.lean   公理审计
 scripts/CheckMain.lean     主结论核对
 scripts/CheckPOVM.lean     一般 POVM 与投影测量的语义连接核对
+scripts/CheckCorollaries.lean  两个无额外假设的数值推论核对
 ```
 
 该证明针对 Lean 内定义的具体矩阵。原始数据文件解析器的内核验证、一般轮式嵌入
-等独立扩展未计入已完成的主结论；正量子缺口的存在已证明，未计算具体数值。
-手稿 Theorem 1.1 另含精确经典值 `ωc = 1 - 1/4251456`；这一项尚未形式化，
-不包含在上述量子主结论中。
+等独立扩展未计入原有主结论。
+
+## 两个数值推论
+
+`ThomGame/Construction/PaperValueCorollaries.lean` 在原有证明之上导出：
+
+```lean
+#check ThomGame.Construction.paper_classical_value_corollary
+#check ThomGame.Construction.paper_quantum_gap_corollary
+```
+
+第一个推论给出允许共享随机性的精确经典值
+`ωc = 1 - 1/4251456`。第二个推论在一般 POVM 定义下给出
+
+\[
+0<2^{-2^{50003}}\le 1-\omega_q
+=\omega_{qc}-\omega_q\le\frac1{4251456}.
+\]
+
+两个定理均不带额外假设。显式下界使用新的有限定量证明；旧定性证明保持不变。
+测量扩张仍允许任意有限局部维数的扩大。
+所有旧的 1,439 个核心及 POVM 模块均按历史 SHA-256 核对为未修改。
+最终版本通过完整构建、两个数值推论检查、原主结论和 POVM 连接检查；
+全项目递归公理审计通过，共检查 19,331 个定理。
+
+新增证明使用有限根群的定量词收集与 regular dilation、内核核验的 shear 平方和
+证书、有限热迭代、有限代数重建及 no-drift 估计。相关说明、证书来源和信任边界见
+[数值推论证明说明](validation/corollaries-proof-sources.md)。

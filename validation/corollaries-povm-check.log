@@ -1,0 +1,82 @@
+structure ThomGame.Quantum.POVM.{u_1, u_2} (H : Type u_1) (O : Type u_2) [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+  [Fintype O] : Type (max u_1 u_2)
+number of parameters: 5
+fields:
+  ThomGame.Quantum.POVM.effect : O → H →L[ℂ] H
+  ThomGame.Quantum.POVM.positive : ∀ (a : O), 0 ≤ self.effect a
+  ThomGame.Quantum.POVM.complete : ∑ a, self.effect a = 1
+constructor:
+  ThomGame.Quantum.POVM.mk.{u_1, u_2} {H : Type u_1} {O : Type u_2} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+    [Fintype O] (effect : O → H →L[ℂ] H) (positive : ∀ (a : O), 0 ≤ effect a) (complete : ∑ a, effect a = 1) : POVM H O
+structure ThomGame.Quantum.FinitePOVMStrategy.{u_1, u_2, u_3, u_4} (X : Type u_1) (Y : Type u_2) (A : Type u_3)
+  (B : Type u_4) [Fintype A] [Fintype B] : Type (max (max (max u_1 u_2) u_3) u_4)
+number of parameters: 6
+fields:
+  ThomGame.Quantum.FinitePOVMStrategy.dimAlice : ℕ
+  ThomGame.Quantum.FinitePOVMStrategy.dimBob : ℕ
+  ThomGame.Quantum.FinitePOVMStrategy.dimAlice_pos : 0 < self.dimAlice
+  ThomGame.Quantum.FinitePOVMStrategy.dimBob_pos : 0 < self.dimBob
+  ThomGame.Quantum.FinitePOVMStrategy.state : BipartiteSpace self.dimAlice self.dimBob
+  ThomGame.Quantum.FinitePOVMStrategy.norm_state : ‖self.state‖ = 1
+  ThomGame.Quantum.FinitePOVMStrategy.alice : X → POVM (LocalSpace self.dimAlice) A
+  ThomGame.Quantum.FinitePOVMStrategy.bob : Y → POVM (LocalSpace self.dimBob) B
+constructor:
+  ThomGame.Quantum.FinitePOVMStrategy.mk.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_2} {A : Type u_3}
+    {B : Type u_4} [Fintype A] [Fintype B] (dimAlice dimBob : ℕ) (dimAlice_pos : 0 < dimAlice) (dimBob_pos : 0 < dimBob)
+    (state : BipartiteSpace dimAlice dimBob) (norm_state : ‖state‖ = 1) (alice : X → POVM (LocalSpace dimAlice) A)
+    (bob : Y → POVM (LocalSpace dimBob) B) : FinitePOVMStrategy X Y A B
+structure ThomGame.Quantum.CommutingPOVMStrategy.{u_1, u_2, u_3, u_4, u_5} (X : Type u_1) (Y : Type u_2) (A : Type u_3)
+  (B : Type u_4) (H : Type u_5) [Fintype A] [Fintype B] [NormedAddCommGroup H] [InnerProductSpace ℂ H] :
+  Type (max (max (max (max u_1 u_2) u_3) u_4) u_5)
+number of parameters: 9
+fields:
+  ThomGame.Quantum.CommutingPOVMStrategy.state : H
+  ThomGame.Quantum.CommutingPOVMStrategy.norm_state : ‖self.state‖ = 1
+  ThomGame.Quantum.CommutingPOVMStrategy.alice : X → POVM H A
+  ThomGame.Quantum.CommutingPOVMStrategy.bob : Y → POVM H B
+  ThomGame.Quantum.CommutingPOVMStrategy.commute : ∀ (x : X) (y : Y) (a : A) (b : B),
+      Commute ((self.alice x).effect a) ((self.bob y).effect b)
+constructor:
+  ThomGame.Quantum.CommutingPOVMStrategy.mk.{u_1, u_2, u_3, u_4, u_5} {X : Type u_1} {Y : Type u_2} {A : Type u_3}
+    {B : Type u_4} {H : Type u_5} [Fintype A] [Fintype B] [NormedAddCommGroup H] [InnerProductSpace ℂ H] (state : H)
+    (norm_state : ‖state‖ = 1) (alice : X → POVM H A) (bob : Y → POVM H B)
+    (commute : ∀ (x : X) (y : Y) (a : A) (b : B), Commute ((alice x).effect a) ((bob y).effect b)) :
+    CommutingPOVMStrategy X Y A B H
+@POVM.exists_projective_dilation : ∀ {H : Type u_1} {O : Type u_2} [inst : NormedAddCommGroup H]
+  [inst_1 : InnerProductSpace ℂ H] [CompleteSpace H] [inst_3 : Fintype O] [FiniteDimensional ℂ H] [Nontrivial H]
+  [Nonempty O] {X : Type u_3} (M : X → POVM H O),
+  ∃ n,
+    ∃ (_ : 0 < n),
+      ∃ V P, ∀ (x : X) (a : O) (ξ ζ : H), inner ℂ (V ξ) (((P x).proj a) (V ζ)) = inner ℂ ξ (((M x).effect a) ζ)
+@FinitePOVMStrategy.exists_projective : ∀ {X : Type u_1} {Y : Type u_2} {A : Type u_3} {B : Type u_4} [inst : Fintype A]
+  [inst_1 : Fintype B] [Nonempty A] [Nonempty B] (S : FinitePOVMStrategy X Y A B), ∃ T, T.correlation = S.correlation
+@FinitePOVMStrategy.exists_coordinates : ∀ {X : Type u_1} {Y : Type u_2} {A : Type u_3} {B : Type u_4} {H : Type u_5}
+  {K : Type u_6} [inst : Fintype A] [inst_1 : Fintype B] [inst_2 : NormedAddCommGroup H]
+  [inst_3 : InnerProductSpace ℂ H] [FiniteDimensional ℂ H] [inst_5 : NormedAddCommGroup K]
+  [inst_6 : InnerProductSpace ℂ K] [FiniteDimensional ℂ K] (ψ : TensorProduct ℂ H K),
+  ‖ψ‖ = 1 →
+    ∀ (M : X → POVM H A) (N : Y → POVM K B),
+      ∃ S, S.correlation = fun x y a b => (inner ℂ ψ ((TensorProduct.mapL ((M x).effect a) ((N y).effect b)) ψ)).re
+@povmQuantumCorrelations_eq_quantumCorrelations : ∀ {X : Type u_1} {Y : Type u_2} {A : Type u_3} {B : Type u_4}
+  [inst : Fintype A] [inst_1 : Fintype B] [Nonempty A] [Nonempty B],
+  povmQuantumCorrelations X Y A B = quantumCorrelations X Y A B
+@FiniteGame.omegaQPOVM_eq_omegaQ : ∀ {X : Type u_1} {Y : Type u_2} {A : Type u_3} {B : Type u_4} [inst : Fintype A]
+  [inst_1 : Fintype B] [inst_2 : Fintype X] [inst_3 : Fintype Y] (G : FiniteGame X Y A B) [Nonempty A] [Nonempty B],
+  G.omegaQPOVM = G.omegaQ
+@FiniteGame.omegaQaPOVM_eq_omegaQa : ∀ {X : Type u_1} {Y : Type u_2} {A : Type u_3} {B : Type u_4} [inst : Fintype A]
+  [inst_1 : Fintype B] [inst_2 : Fintype X] [inst_3 : Fintype Y] (G : FiniteGame X Y A B) [Nonempty A] [Nonempty B],
+  G.omegaQaPOVM = G.omegaQa
+@FiniteGame.omegaQcPOVM_eq_one_of_perfect : ∀ {X : Type u_1} {Y : Type u_2} {A : Type u_3} {B : Type u_4}
+  [inst : Fintype A] [inst_1 : Fintype B] [inst_2 : Fintype X] [inst_3 : Fintype Y] (G : FiniteGame X Y A B) {H : Type}
+  [inst_4 : NormedAddCommGroup H] [inst_5 : InnerProductSpace ℂ H] [inst_6 : CompleteSpace H]
+  (S : CommutingStrategy X Y A B H), G.success S.correlation = 1 → G.omegaQcPOVM = 1
+'ThomGame.Quantum.POVM.exists_projective_dilation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThomGame.Quantum.FinitePOVMStrategy.exists_projective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThomGame.Quantum.FinitePOVMStrategy.exists_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThomGame.Quantum.povmQuantumCorrelations_eq_quantumCorrelations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThomGame.Quantum.FiniteGame.omegaQPOVM_eq_omegaQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThomGame.Quantum.FiniteGame.omegaQaPOVM_eq_omegaQa' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThomGame.Quantum.FiniteGame.omegaQcPOVM_eq_one_of_perfect' depends on axioms: [propext, Classical.choice, Quot.sound]
+POVM semantic bridge axiom audit passed.
