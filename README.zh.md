@@ -1,90 +1,136 @@
-# 论文主结论的 Lean 形式化
+# 有限非局域博弈分离的 Lean 形式化
 
-这是可单独移动和构建的源码副本，保留原有全部 1,429 个核心模块、总入口和固定版本的
-构建配置，并在外层加入一般 POVM 与投影测量之间的语义连接。证书数据已包含在 Lean
-源码中，构建不需要原目录的论文附件、生成器或历史记录。
+[English](README.md) | **简体中文**
 
-按手稿一般 POVM 定义陈述的量子主结论位于 `ThomGame/Construction/PaperPOVMGap.lean`：
+本项目使用 Lean 4 / mathlib 证明：存在一个具有**二值输赢判定**的有限双人非局域博弈，使得
 
-```lean
-import ThomGame.Construction.PaperPOVMGap
+$$
+\omega_q(G)<1=\omega_{qc}(G).
+$$
 
-#check ThomGame.Construction.paper_main_results_povm
+量子值允许任意有限局部维数；对易算子值允许无限维 Hilbert 空间。两个公共存在性定理的结论均包含二值得分条件，且没有额外假设。
+
+存在性证明通过**显式构造**完成：两个定理都以明确定义的 `ThomGame.Construction.paperGame` 为见证。若想查看这个博弈，请按下方的[构造阅读路径](#在哪里查看博弈的显式构造)阅读代码。
+
+> [!IMPORTANT]
+> **如果只想验证这个结论，请从下面的最小检查链条开始。**
+> 人工核对博弈、测量、策略和 value 的定义及存在性陈述，然后运行两条验证命令。无需人工阅读具体构造和中间证明。
+
+## 从这里开始：最小检查链条
+
+**博弈 → POVM → 策略与 Born 概率 → 相关性集合 → value → 存在性定理 → Lean 检查。**
+
+准备好固定版本的工具链和依赖后，在仓库根目录运行：
+
+```sh
+lake --fail-fast build ThomGame.Construction.NonlocalGameSeparation
+lake env lean scripts/CheckSeparation.lean
 ```
 
-它证明指定构造上的 J 非平凡、所有正维数下的一致近似平凡性，以及
-`ωq = ωqa < 1 = ωqc`，其中三个值允许任意 POVM。
-原有 `PaperQuantumGap.lean` 中的投影测量版定理及全部核心证明保持不变。
+新环境请先看[环境准备](#环境准备与完整项目检查)。[中文详细指南](validation/minimal-separation-check.zh.md)和 [English guide](validation/minimal-separation-check.md)说明了同一条最小路径。
 
-新增的 `POVM.exists_projective_dilation` 对每个测量族构造一个与问题无关的固定
-等距嵌入，并允许扩大有限局部维数。`FinitePOVMStrategy.exists_projective` 证明
-整个相关数组与某个投影测量策略完全相同，因此量子相关集及其闭包、上确界均相同。
-任意有限维复 Hilbert 空间的策略可通过 `FinitePOVMCoordinates.lean` 转到显式坐标空间。
-commuting 部分只使用投影策略到 POVM 策略的包含关系和成功率不超过一，将原有完美策略转移过去。
-新值的 Lean 名称为 `omegaQPOVM`、`omegaQaPOVM`、`omegaQcPOVM`。
+### 1. 核对定义
 
-## 构建与验证
+这条路径直接使用一般 POVM 版本，其定义明确写出了测量模型和 Born 公式。
 
-需要安装 Lean 工具链管理器 elan 和 Git。在本目录执行：
+| 步骤 | 阅读位置 | 需要确认的数学含义 |
+| --- | --- | --- |
+| 博弈与得分 | [FiniteGame](ThomGame/Quantum/FiniteGame.lean#L13)，第 13–31 行 | 四个有限集合；非负且总和为 1 的问题分布；`[0,1]` 值的得分；对问题和回答求加权期望。 |
+| 相关性数组 | [CorrelationTable](ThomGame/Quantum/Correlation.lean#L15) | 以双方问题和双方回答为索引的实数数组。 |
+| 测量 | [POVM](ThomGame/Quantum/POVM.lean#L19)，第 19–26 行 | 有界正算子族，算子之和为恒等算子。 |
+| 有限维策略 | [局部空间](ThomGame/Quantum/FiniteStrategy.lean#L13)，第 13–14 行；[FinitePOVMStrategy](ThomGame/Quantum/FinitePOVMStrategy.lean#L17)，第 17–39 行 | 任意正有限局部维数、张量积空间中的单位向量、本地 POVM 和张量积 Born 公式。 |
+| 对易策略 | [CommutingPOVMStrategy](ThomGame/Quantum/CommutingPOVMStrategy.lean#L18)，第 18–35 行 | 完备复 Hilbert 空间、单位向量、POVM、跨玩家对易条件和相应 Born 公式。 |
+| 允许的相关性 | [POVM 相关性集合](ThomGame/Quantum/POVMGameValue.lean#L17)，第 17–28 行 | 分别收集相应策略类别产生的全部相关性。 |
+| value | [value](ThomGame/Quantum/GameValue.lean#L15)；[omegaQPOVM 与 omegaQcPOVM](ThomGame/Quantum/POVMGameValue.lean#L75)，第 75–79 行 | 在各自允许的相关性集合上，对期望得分取上确界。 |
+
+得分和 value 对应以下公式：
+
+$$
+\operatorname{score}_G(p)=\sum_{x,y,a,b}\pi(x,y)V(x,y,a,b)p(a,b\mid x,y),
+\qquad \omega_t(G)=\sup_{p\in C_t}\operatorname{score}_G(p).
+$$
+
+共享态与问题无关；每位玩家的测量只依赖自己的问题。局部维数没有统一上界。对易模型没有有限维限制，只要求跨玩家对易。详细指南说明了纯态约定，以及任意有限维 Hilbert 空间到坐标模型的已验证转换。
+
+### 2. 核对最终陈述
+
+`ThomGame.Quantum` 命名空间中的公共定理 [exists_finiteGame_povm_quantum_commuting_separation](ThomGame/Construction/NonlocalGameSeparation.lean#L28) 陈述如下：
+
+```lean
+∃ (X Y A B : Type) (_ : Fintype X) (_ : Fintype Y)
+  (_ : Fintype A) (_ : Fintype B) (G : FiniteGame X Y A B),
+  (∀ x y a b, G.payoff x y a b = 0 ∨ G.payoff x y a b = 1) ∧
+  G.omegaQcPOVM = 1 ∧ G.omegaQPOVM < 1
+```
+
+二值得分是**已经证明的结论**的一部分。同一文件还给出 [exists_finiteGame_quantum_commuting_separation](ThomGame/Construction/NonlocalGameSeparation.lean#L13)，使用投影测量版本的 `omegaQ` 和 `omegaQc`。
+
+[CheckSeparation.lean](scripts/CheckSeparation.lean) 明确核对公共 POVM 定理的陈述。其中的 `SeparationCheck.binary_separation` 还证明四个集合都可以取为非空。
+
+### 3. 核对检查结果
+
+检查脚本打印实际核心定义和最终陈述，省略展开的证明项，并递归检查其公理依赖；同时核对有限维坐标模型覆盖定理。允许的公理只有 `propext`、`Classical.choice`、`Quot.sound`。任何其他公理，包括 `sorryAx`，都会使检查失败。
+
+成功时最后一行是：
+
+```text
+Separation check passed: explicit statements, nonempty binary game, and standard axioms only.
+```
+
+**已记录的结果：2026-10-04，在两个公共主定理加入二值得分条件后验证通过。** 参见[最小检查](validation/binary-separation-check-20261004.log)、[定理模块构建](validation/binary-separation-target-build-20261004.log)和[主定理检查](validation/binary-separation-main-check-20261004.log)。
+
+人工确认定义表达了预期数学对象；Lean 检查形式命题。上述命令会复用已有 `.olean` 文件。若要从源码重建该结论依赖的本项目证明，可在没有本项目 `.lake/build` 的新源码副本中运行同样命令。[详细指南](validation/minimal-separation-check.zh.md)说明了验证范围。
+
+## 在哪里查看博弈的显式构造
+
+这个见证是一个线性系统博弈：Alice 收到一行并返回三个比特；Bob 收到该行中出现的一列并返回一个比特。当 Alice 的三个比特满足该行方程，且她对 Bob 所问列的回答与 Bob 的回答一致时，双方获胜。
+
+1. [PaperGame.lean：`paperGame`](ThomGame/Construction/PaperGame.lean#L15) 将实际博弈定义为 `paperSystem.incidenceGame`，并给出具体的问题集和回答集类型。同文件的 `paperGame_weight` 和 `paperGame_payoff` 分别陈述问题分布和获胜条件。
+2. [IncidenceGame.lean](ThomGame/Quantum/IncidenceGame.lean#L29) 定义 `incidenceWeight`、`incidencePayoff` 和 `incidenceGame`：在行与其出现列组成的关联对上均匀采样，定义二值输赢判定，再将它们组装成 `FiniteGame`。
+3. [PaperOrderedSystem.lean：`paperSystem`](ThomGame/Construction/PaperOrderedSystem.lean#L12) 给出每行列索引按递增顺序排列的具体稀疏系统，并证明其矩阵和右端项分别是 `A` 和 `b`。
+4. [MatrixData.lean](ThomGame/Construction/MatrixData.lean#L18) 定义 `A` 和 `b`；`sourceTriples` 与 `A_eq_one_iff` 指明矩阵元素，`b_formula` 指明右端项。若想继续查看底层构造，可追到 [Numbering.lean：`numberedSystem`](ThomGame/Construction/Numbering.lean#L108) 和 [Wheel.lean：`wheelFamily` 与 `system`](ThomGame/Construction/Wheel.lean#L70)。
+
+## 环境准备与完整项目检查
+
+安装 elan 和 Git 后，在仓库根目录运行：
 
 ```sh
 lake exe cache get
-lake build
+```
+
+项目固定使用 Lean `v4.35.0-rc3`，mathlib 固定为提交 `16efc2c756299924184fe015f6384ad6538d42c7`。参见 [lean-toolchain](lean-toolchain)、[lakefile.toml](lakefile.toml) 和 [lake-manifest.json](lake-manifest.json)。Mathlib 是唯一直接 Lean 包依赖。证书嵌入 Lean 源码；构建不需要论文 PDF、外部数据生成器或 Python。
+
+如需执行最小分离检查之外的完整检查：
+
+```sh
+lake --fail-fast build
+lake env lean scripts/CheckSeparation.lean
+lake env lean scripts/CheckMain.lean
 lake env lean scripts/CheckPOVM.lean
 lake env lean scripts/CheckCorollaries.lean
 lake env lean scripts/AuditAxioms.lean
-lake env lean scripts/CheckMain.lean
 ```
 
-首次运行会下载固定版本的依赖和 mathlib 编译缓存，生成 `.lake/`。
-`lean-toolchain` 固定 Lean 为 `v4.35.0-rc3`，`lake-manifest.json` 固定依赖版本；
-mathlib 提交为 `16efc2c756299924184fe015f6384ad6538d42c7`。
+[验证记录索引](validation/README.md)区分了最新二值分离定理的检查结果，以及更早的全项目审计和源码哈希快照。
 
-`AuditAxioms.lean` 审计全部项目定理的公理依赖，允许的基础公理仅有
-`propext`、`Classical.choice`、`Quot.sound`。
-`CheckMain.lean` 核对最终主定理、实际定义、具体参数及其应用。
-`CheckPOVM.lean` 可独立核对新增语义连接及其公理依赖，不导入大型具体构造。
+## 其他结论
 
-## 目录
+- [PaperPOVMGap.lean](ThomGame/Construction/PaperPOVMGap.lean)：`ThomGame.Construction.paper_main_results_povm` 将具体构造的中央元素结论与一般 POVM 下的 `ωq = ωqa < 1 = ωqc` 合并陈述。
+- [PaperValueCorollaries.lean](ThomGame/Construction/PaperValueCorollaries.lean)：`paper_classical_value_corollary` 给出允许共享随机性的精确经典值；`paper_quantum_gap_corollary` 给出一般 POVM 量子缺口的显式界：
 
-```text
-ThomGame/                 形式化源码及 Lean 证书数据
-ThomGame.lean             全项目导入入口
-lakefile.toml             构建配置
-lake-manifest.json        依赖版本锁
-lean-toolchain            Lean 版本
-scripts/AuditAxioms.lean   公理审计
-scripts/CheckMain.lean     主结论核对
-scripts/CheckPOVM.lean     一般 POVM 与投影测量的语义连接核对
-scripts/CheckCorollaries.lean  两个无额外假设的数值推论核对
-```
+$$
+\omega_c=1-\frac{1}{4251456},\qquad
+0<2^{-2^{50003}}\le 1-\omega_q=\omega_{qc}-\omega_q\le\frac{1}{4251456}.
+$$
 
-该证明针对 Lean 内定义的具体矩阵。原始数据文件解析器的内核验证、一般轮式嵌入
-等独立扩展未计入原有主结论。
+[数值推论证明说明](validation/corollaries-proof-sources.md)记录这些推论的来源。它们属于上述最小阅读和验证路径之外的额外结论。
 
-## 两个数值推论
+## 目录索引
 
-`ThomGame/Construction/PaperValueCorollaries.lean` 在原有证明之上导出：
-
-```lean
-#check ThomGame.Construction.paper_classical_value_corollary
-#check ThomGame.Construction.paper_quantum_gap_corollary
-```
-
-第一个推论给出允许共享随机性的精确经典值
-`ωc = 1 - 1/4251456`。第二个推论在一般 POVM 定义下给出
-
-\[
-0<2^{-2^{50003}}\le 1-\omega_q
-=\omega_{qc}-\omega_q\le\frac1{4251456}.
-\]
-
-两个定理均不带额外假设。显式下界使用新的有限定量证明；旧定性证明保持不变。
-测量扩张仍允许任意有限局部维数的扩大。
-所有旧的 1,439 个核心及 POVM 模块均按历史 SHA-256 核对为未修改。
-最终版本通过完整构建、两个数值推论检查、原主结论和 POVM 连接检查；
-全项目递归公理审计通过，共检查 19,331 个定理。
-
-新增证明使用有限根群的定量词收集与 regular dilation、内核核验的 shear 平方和
-证书、有限热迭代、有限代数重建及 no-drift 估计。相关说明、证书来源和信任边界见
-[数值推论证明说明](validation/corollaries-proof-sources.md)。
+| 位置 | 内容 |
+| --- | --- |
+| [ThomGame/Quantum](ThomGame/Quantum) | 博弈、测量、策略、相关性及 value 的定义。 |
+| [NonlocalGameSeparation.lean](ThomGame/Construction/NonlocalGameSeparation.lean) | 两个带二值得分条件的公共存在性定理。 |
+| [ThomGame.lean](ThomGame.lean) | 全项目导入入口。 |
+| [scripts](scripts) | 专项检查与全项目公理审计。 |
+| [validation](validation) | 详细检查指南、日志与注明版本阶段的历史记录。 |

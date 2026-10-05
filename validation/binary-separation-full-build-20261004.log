@@ -1,0 +1,650 @@
+⚠ [5330/5482] Replayed ThomGame.Quantum.FinitePOVMDilation
+warning: ThomGame/Quantum/FinitePOVMDilation.lean:21:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMDilation.lean:22:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [5331/5482] Replayed ThomGame.Quantum.CommutingPOVMStrategy
+warning: ThomGame/Quantum/CommutingPOVMStrategy.lean:57:0: automatically included section variable(s) unused in theorem `ThomGame.Quantum.CommutingPOVMStrategy.correlation_normalized`:
+  [CompleteSpace H]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace H] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Quantum/CommutingPOVMStrategy.lean:67:0: automatically included section variable(s) unused in theorem `ThomGame.Quantum.CommutingPOVMStrategy.noSignalling`:
+  [CompleteSpace H]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace H] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5333/5482] Replayed ThomGame.Quantum.FinitePOVMCoordinates
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:53:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:54:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:55:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:58:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [hz] at hψ
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:61:6: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:59:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:66:6: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Quantum/FinitePOVMCoordinates.lean:64:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [5334/5482] Replayed ThomGame.Analysis.FiniteNoDriftBounds
+warning: ThomGame/Analysis/FiniteNoDriftBounds.lean:23:49: Variable name `ha` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ha
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [5337/5482] Replayed ThomGame.Analysis.FiniteNoDriftReverse
+warning: ThomGame/Analysis/FiniteNoDriftReverse.lean:62:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Analysis/FiniteNoDriftReverse.lean:71:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Analysis/FiniteNoDriftReverse.lean:71:58: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Analysis/FiniteNoDriftReverse.lean:88:5: Variable name `hε` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hε
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [5338/5482] Replayed ThomGame.Analysis.FiniteNoDriftPerturbation
+warning: ThomGame/Analysis/FiniteNoDriftPerturbation.lean:17:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_commutator_lipschitz`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftPerturbation.lean:30:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_commutator_unitary_lipschitz`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftPerturbation.lean:94:5: Variable name `hK` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hK
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [5339/5482] Replayed ThomGame.Groups.FinitePrimeFivePair
+warning: ThomGame/Groups/FinitePrimeFivePair.lean:48:45: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Groups/FinitePrimeFivePair.lean:75:11: Variable name `g` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _g
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ThomGame/Groups/FinitePrimeFivePair.lean:76:12: Variable name `p` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _p
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [5340/5482] Replayed ThomGame.Groups.FinitePrimeFivePairWords
+warning: ThomGame/Groups/FinitePrimeFivePairWords.lean:44:56: This simp argument is unused:
+  c
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Pi.single_apply, hk, hl]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Groups/FinitePrimeFivePairWords.lean:44:59: This simp argument is unused:
+  Pi.single_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [c, hk, hl]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Groups/FinitePrimeFivePairWords.lean:126:31: This simp argument is unused:
+  Pi.single_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Groups/FinitePrimeFivePairWords.lean:132:55: This simp argument is unused:
+  Pi.single_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [h, h']
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Groups/FinitePrimeFivePairWords.lean:144:43: This simp argument is unused:
+  eq_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Finset.sum_apply, Pi.single_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Groups/FinitePrimeFivePairWords.lean:156:43: This simp argument is unused:
+  eq_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [Finset.sum_apply, Pi.single_apply]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Groups/FinitePrimeFivePairWords.lean:178:8: This simp argument is unused:
+  eq_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [5350/5482] Replayed ThomGame.Analysis.FiniteUCPExplicitParameters
+warning: ThomGame/Analysis/FiniteUCPExplicitParameters.lean:78:6: exponent 32002 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteUCPExplicitParameters.lean:92:4: exponent 40000 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteUCPExplicitParameters.lean:98:6: exponent 32002 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteUCPExplicitParameters.lean:107:4: exponent 32000 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+⚠ [5352/5482] Replayed ThomGame.Analysis.FiniteUCPSandwich
+warning: ThomGame/Analysis/FiniteUCPSandwich.lean:105:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteUCP_heatSandwich_defectControl`:
+  [NeZero hQ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero hQ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5354/5482] Replayed ThomGame.Analysis.QuantitativeWheel
+warning: ThomGame/Analysis/QuantitativeWheel.lean:24:44: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [5359/5482] Replayed ThomGame.Construction.PaperQuantitativeWheel
+warning: ThomGame/Construction/PaperQuantitativeWheel.lean:114:68: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [5364/5482] Replayed ThomGame.Analysis.RelatorCollectionTools
+warning: ThomGame/Analysis/RelatorCollectionTools.lean:90:10: This simp argument is unused:
+  Pi.single_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hj]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [5366/5482] Replayed ThomGame.Analysis.FiniteRegularDilation
+warning: ThomGame/Analysis/FiniteRegularDilation.lean:56:22: This simp argument is unused:
+  abs_inv
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [finiteDilationLinear_apply, norm_smul, norm_inv, Complex.norm_real, Real.norm_eq_abs,
+    abs_of_nonneg (Real.sqrt_nonneg _), LinearIsometryEquiv.norm_map, Finset.sum_const, Finset.card_univ, nsmul_eq_mul,
+    mul_pow, inv_pow, hsq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Analysis/FiniteRegularDilation.lean:82:6: This simp argument is unused:
+  abs_inv
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [mul_inv_rev, inv_inv, norm_inv, Complex.norm_real, Real.norm_eq_abs,
+    abs_of_nonneg (Real.sqrt_nonneg _)]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [5367/5482] Replayed ThomGame.Analysis.FiniteIsometryAverage
+warning: ThomGame/Analysis/FiniteIsometryAverage.lean:18:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteIsometryAverage_apply`:
+  [Nonempty I]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty I] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteIsometryAverage.lean:64:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteIsometrySymmetricAverage_apply`:
+  [Nonempty I]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Nonempty I] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5368/5482] Replayed ThomGame.Groups.FinitePrimeFivePairStructure
+warning: ThomGame/Groups/FinitePrimeFivePairStructure.lean:18:11: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ThomGame/Groups/FinitePrimeFivePairStructure.lean:18:13: Variable name `y` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _y
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ThomGame/Groups/FinitePrimeFivePairStructure.lean:23:11: Variable name `x` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _x
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ThomGame/Groups/FinitePrimeFivePairStructure.lean:23:13: Variable name `y` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _y
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ThomGame/Groups/FinitePrimeFivePairStructure.lean:47:34: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Groups/FinitePrimeFivePairStructure.lean:66:11: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [5369/5482] Replayed ThomGame.Analysis.FinitePrimeFivePairPolynomial
+warning: ThomGame/Analysis/FinitePrimeFivePairPolynomial.lean:70:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Analysis/FinitePrimeFivePairPolynomial.lean:67:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteSubgroupAverage_equiv_apply`:
+  [CompleteSpace H]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace H] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5370/5482] Replayed ThomGame.Analysis.DilationQuadraticTransfer
+warning: ThomGame/Analysis/DilationQuadraticTransfer.lean:14:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.norm_sq_le_of_norm_sub_le`:
+  [InnerProductSpace ℂ K]
+  [CompleteSpace K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [InnerProductSpace ℂ K] [CompleteSpace K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/DilationQuadraticTransfer.lean:22:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.re_inner_sub_le`:
+  [CompleteSpace K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/DilationQuadraticTransfer.lean:53:10: `ContinuousLinearMap.mul_apply` has been deprecated: Use `mul_apply_eq_comp` instead
+
+Note: The updated constant is in a different namespace. Dot notation may need to be changed (e.g., from `x.mul_apply` to `mul_apply_eq_comp x`).
+
+Hint: Replace the deprecated name:
+  C̵o̵n̵t̵i̵n̵u̵o̵u̵s̵L̵i̵n̵e̵a̵r̵M̵a̵p̵.̵m̵u̵l̵_̵a̵p̵p̵l̵y̵m̲u̲l̲_̲a̲p̲p̲l̲y̲_̲e̲q̲_̲c̲o̲m̲p̲
+warning: ThomGame/Analysis/DilationQuadraticTransfer.lean:65:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.residual_intertwining`:
+  [CompleteSpace K]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace K] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/DilationQuadraticTransfer.lean:85:47: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [5401/5482] Replayed ThomGame.Analysis.FiniteNoDriftAlignment
+warning: ThomGame/Analysis/FiniteNoDriftAlignment.lean:17:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_conjugation_contract`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftAlignment.lean:29:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_conjugation_norm`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftAlignment.lean:34:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_conjugation_lipschitz`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5403/5482] Replayed ThomGame.Analysis.FiniteNoDriftStabilization
+warning: ThomGame/Analysis/FiniteNoDriftStabilization.lean:15:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_near_mono`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftStabilization.lean:42:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Analysis/FiniteNoDriftStabilization.lean:30:17: Variable name `hn` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hn
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ThomGame/Analysis/FiniteNoDriftStabilization.lean:75:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Analysis/FiniteNoDriftStabilization.lean:77:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Analysis/FiniteNoDriftStabilization.lean:78:24: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [5404/5482] Replayed ThomGame.Analysis.FiniteNoDriftObstruction
+warning: ThomGame/Analysis/FiniteNoDriftObstruction.lean:93:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_unitary_commutator_norm`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5406/5482] Replayed ThomGame.Analysis.FiniteNoDriftCertificate
+warning: ThomGame/Analysis/FiniteNoDriftCertificate.lean:57:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [5408/5482] Replayed ThomGame.Analysis.FiniteNoDriftRootWords
+warning: ThomGame/Analysis/FiniteNoDriftRootWords.lean:16:51: This simp argument is unused:
+  Fintype.card_fun
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [FiniteNoDriftRootIndex, Fintype.card_prod, ZMod.card]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Analysis/FiniteNoDriftRootWords.lean:82:74: This simp argument is unused:
+  Pi.single_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hxi]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Analysis/FiniteNoDriftRootWords.lean:83:12: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [FinitePrimeFivePair.repeatWord, Ne.symm hxi]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Analysis/FiniteNoDriftRootWords.lean:89:5: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: ThomGame/Analysis/FiniteNoDriftRootWords.lean:112:13: This simp argument is unused:
+  Function.comp_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [finiteNoDriftRootExtend, Fin.append_left, Fin.append_right, ZMod.val_zero,
+    FinitePrimeFivePair.repeatWord, List.replicate_zero, List.flatten_nil, List.flatMap_nil, List.append_nil]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Analysis/FiniteNoDriftRootWords.lean:114:4: This simp argument is unused:
+  List.flatMap_nil
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Function.comp_apply, finiteNoDriftRootExtend, Fin.append_left, Fin.append_right, ZMod.val_zero,
+    FinitePrimeFivePair.repeatWord, List.replicate_zero, List.flatten_nil, List.append_nil]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Analysis/FiniteNoDriftRootWords.lean:114:22: This simp argument is unused:
+  List.append_nil
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Function.comp_apply, finiteNoDriftRootExtend, Fin.append_left, Fin.append_right, ZMod.val_zero,
+    FinitePrimeFivePair.repeatWord, List.replicate_zero, List.flatten_nil, List.flatMap_nil]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [5409/5482] Replayed ThomGame.Analysis.FiniteNoDriftEnergy
+warning: ThomGame/Analysis/FiniteNoDriftEnergy.lean:45:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDriftEnergy_sq_bound`:
+  [NeZero h]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero h] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftEnergy.lean:54:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThomGame/Analysis/FiniteNoDriftEnergy.lean:57:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Analysis/FiniteNoDriftEnergy.lean:57:35: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [5411/5482] Replayed ThomGame.Analysis.FiniteNoDriftCompressor
+warning: ThomGame/Analysis/FiniteNoDriftCompressor.lean:72:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDriftComm_pullback`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftCompressor.lean:94:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_positive_action_comm`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5414/5482] Replayed ThomGame.Analysis.FiniteNoDriftDouble
+warning: ThomGame/Analysis/FiniteNoDriftDouble.lean:15:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDriftComm_double_difference`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftDouble.lean:23:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_action_agree`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftDouble.lean:59:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDriftDoubleCopy_agree`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5415/5482] Replayed ThomGame.Analysis.FiniteNoDriftShearAction
+warning: ThomGame/Analysis/FiniteNoDriftShearAction.lean:28:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_full_cyclic_comm`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftShearAction.lean:71:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_signed_action_dist`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/FiniteNoDriftShearAction.lean:90:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.finiteNoDrift_all_action_comm`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5417/5482] Replayed ThomGame.Analysis.FiniteNoDriftHeatTransport
+warning: ThomGame/Analysis/FiniteNoDriftHeatTransport.lean:69:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [5418/5482] Replayed ThomGame.Analysis.FiniteUCPHeatParameters
+warning: ThomGame/Analysis/FiniteUCPHeatParameters.lean:65:6: exponent 49999 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteUCPHeatParameters.lean:81:4: exponent 49998 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteUCPHeatParameters.lean:98:37: exponent 40033 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteUCPHeatParameters.lean:115:37: exponent 40011 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteUCPHeatParameters.lean:125:2: exponent 40032 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteUCPHeatParameters.lean:155:4: exponent 40032 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteUCPHeatParameters.lean:184:6: exponent 40001 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteUCPHeatParameters.lean:204:14: exponent 40010 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+⚠ [5420/5482] Replayed ThomGame.Analysis.FiniteNoDriftExplicitCertificate
+warning: ThomGame/Analysis/FiniteNoDriftExplicitCertificate.lean:44:27: exponent 40032 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteNoDriftExplicitCertificate.lean:44:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Analysis/FiniteNoDriftExplicitCertificate.lean:44:66: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [5424/5482] Replayed ThomGame.Construction.PaperExplicitGapReduction
+warning: ThomGame/Construction/PaperExplicitGapReduction.lean:64:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [5425/5482] Replayed ThomGame.Analysis.FiniteNoDriftExplicitDouble
+warning: ThomGame/Analysis/FiniteNoDriftExplicitDouble.lean:16:6: exponent 50000 exceeds the threshold 256, exponentiation operation was not evaluated, use `set_option exponentiation.threshold <num>` to set a new threshold
+warning: ThomGame/Analysis/FiniteNoDriftExplicitDouble.lean:57:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [5426/5482] Replayed ThomGame.Analysis.CentralBlockCollection
+warning: ThomGame/Analysis/CentralBlockCollection.lean:38:75: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Analysis/CentralBlockCollection.lean:63:85: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Analysis/CentralBlockCollection.lean:92:75: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThomGame/Analysis/CentralBlockCollection.lean:118:85: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [5427/5482] Replayed ThomGame.Analysis.PrimeFivePairCollection
+warning: ThomGame/Analysis/PrimeFivePairCollection.lean:92:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.PairCollectionRelations.C_commutes_power`:
+  h
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit h in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/PrimeFivePairCollection.lean:127:22: Variable name `hr` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hr
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ThomGame/Analysis/PrimeFivePairCollection.lean:154:54: This simp argument is unused:
+  Nat.one_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Nat.mul_zero, Nat.zero_add, Nat.mul_one]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThomGame/Analysis/PrimeFivePairCollection.lean:188:8: automatically included section variable(s) unused in theorem `ThomGame.Analysis.PairCollectionRelations.normal_one`:
+  h
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit h in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/PrimeFivePairCollection.lean:240:46: This simp argument is unused:
+  add_left_comm
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [κ, γ, γ', sub_eq_add_neg, add_comm, add_assoc]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [5430/5482] Replayed ThomGame.Analysis.CompressorPairDilation
+warning: ThomGame/Analysis/CompressorPairDilation.lean:18:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.matrixUnitaryConjugation_mul_apply`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/CompressorPairDilation.lean:42:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.compressorPairMatrices_mul_defect`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThomGame/Analysis/CompressorPairDilation.lean:50:0: automatically included section variable(s) unused in theorem `ThomGame.Analysis.compressorPairMatrices_mul_inv_defect`:
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [5433/5482] Replayed ThomGame.Analysis.CompressorRootWeakGap
+warning: ThomGame/Analysis/CompressorRootWeakGap.lean:82:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [5479/5482] Replayed ThomGame.Construction.PaperExplicitDoubleBound
+warning: ThomGame/Construction/PaperExplicitDoubleBound.lean:15:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+✔ [5481/5482] Built ThomGame (20s)
+Build completed successfully (5482 jobs).

@@ -1,5 +1,6 @@
 import ThomGame.Construction.PaperQuantumGap
 import ThomGame.Construction.PaperPOVMGap
+import ThomGame.Construction.NonlocalGameSeparation
 import Lean.Util.CollectAxioms
 
 set_option autoImplicit false
@@ -108,14 +109,22 @@ example : paperGame.omegaQPOVM = paperGame.omegaQaPOVM ∧
 #print axioms ThomGame.Construction.paper_main_results_povm
 #print axioms ThomGame.Construction.paper_povm_quantum_value_separation
 
+-- The existential statements quantify all four finite alphabets and the game.
+#check ThomGame.Quantum.exists_finiteGame_quantum_commuting_separation
+#check ThomGame.Quantum.exists_finiteGame_povm_quantum_commuting_separation
+#print axioms ThomGame.Quantum.exists_finiteGame_quantum_commuting_separation
+#print axioms ThomGame.Quantum.exists_finiteGame_povm_quantum_commuting_separation
+
 open Lean Elab Command in
 run_cmd do
   let allowed : Array Name := #[``propext, ``Classical.choice, ``Quot.sound]
   let targets : Array Name := #[
     ``ThomGame.Construction.paper_main_results,
-    ``ThomGame.Construction.paper_main_results_povm]
+    ``ThomGame.Construction.paper_main_results_povm,
+    ``ThomGame.Quantum.exists_finiteGame_quantum_commuting_separation,
+    ``ThomGame.Quantum.exists_finiteGame_povm_quantum_commuting_separation]
   for name in targets do
     for ax in (← collectAxioms name) do
       unless allowed.contains ax do
         throwError "Unexpected axiom in {name}: {ax}"
-  logInfo "Original and POVM main theorem axiom audit passed."
+  logInfo "Original and POVM main theorems and existential corollaries passed the axiom audit."

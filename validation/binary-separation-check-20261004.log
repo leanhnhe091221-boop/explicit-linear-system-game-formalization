@@ -1,0 +1,146 @@
+@[reducible] def ThomGame.Quantum.CorrelationTable.{u_1, u_2, u_3, u_4} : Type u_1 →
+  Type u_2 → Type u_3 → Type u_4 → Type (max (max (max u_1 u_2) u_3) u_4) :=
+fun X Y A B => X → Y → A → B → ℝ
+structure ThomGame.Quantum.FiniteGame.{u_1, u_2, u_3, u_4} (X : Type u_1) (Y : Type u_2) (A : Type u_3) (B : Type u_4)
+  [Fintype X] [Fintype Y] : Type (max (max (max u_1 u_2) u_3) u_4)
+number of parameters: 6
+fields:
+  ThomGame.Quantum.FiniteGame.weight : X → Y → ℝ
+  ThomGame.Quantum.FiniteGame.weight_nonneg : ∀ (x : X) (y : Y), 0 ≤ self.weight x y
+  ThomGame.Quantum.FiniteGame.weight_sum : ∑ x, ∑ y, self.weight x y = 1
+  ThomGame.Quantum.FiniteGame.payoff : X → Y → A → B → ℝ
+  ThomGame.Quantum.FiniteGame.payoff_nonneg : ∀ (x : X) (y : Y) (a : A) (b : B), 0 ≤ self.payoff x y a b
+  ThomGame.Quantum.FiniteGame.payoff_le_one : ∀ (x : X) (y : Y) (a : A) (b : B), self.payoff x y a b ≤ 1
+constructor:
+  ThomGame.Quantum.FiniteGame.mk.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_2} {A : Type u_3} {B : Type u_4}
+    [Fintype X] [Fintype Y] (weight : X → Y → ℝ) (weight_nonneg : ∀ (x : X) (y : Y), 0 ≤ weight x y)
+    (weight_sum : ∑ x, ∑ y, weight x y = 1) (payoff : X → Y → A → B → ℝ)
+    (payoff_nonneg : ∀ (x : X) (y : Y) (a : A) (b : B), 0 ≤ payoff x y a b)
+    (payoff_le_one : ∀ (x : X) (y : Y) (a : A) (b : B), payoff x y a b ≤ 1) : FiniteGame X Y A B
+def ThomGame.Quantum.FiniteGame.answerScore.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} →
+        [inst : Fintype X] →
+          [inst_1 : Fintype Y] →
+            [Fintype A] → [Fintype B] → FiniteGame X Y A B → CorrelationTable X Y A B → X → Y → ℝ :=
+fun {X} {Y} {A} {B} [Fintype X] [Fintype Y] [Fintype A] [Fintype B] G p x y => ∑ a, ∑ b, G.payoff x y a b * p x y a b
+def ThomGame.Quantum.FiniteGame.success.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} →
+        [inst : Fintype X] →
+          [inst_1 : Fintype Y] → [Fintype A] → [Fintype B] → FiniteGame X Y A B → CorrelationTable X Y A B → ℝ :=
+fun {X} {Y} {A} {B} [Fintype X] [Fintype Y] [Fintype A] [Fintype B] G p => ∑ x, ∑ y, G.weight x y * G.answerScore p x y
+structure ThomGame.Quantum.POVM.{u_1, u_2} (H : Type u_1) (O : Type u_2) [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+  [Fintype O] : Type (max u_1 u_2)
+number of parameters: 5
+fields:
+  ThomGame.Quantum.POVM.effect : O → H →L[ℂ] H
+  ThomGame.Quantum.POVM.positive : ∀ (a : O), 0 ≤ self.effect a
+  ThomGame.Quantum.POVM.complete : ∑ a, self.effect a = 1
+constructor:
+  ThomGame.Quantum.POVM.mk.{u_1, u_2} {H : Type u_1} {O : Type u_2} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+    [Fintype O] (effect : O → H →L[ℂ] H) (positive : ∀ (a : O), 0 ≤ effect a) (complete : ∑ a, effect a = 1) : POVM H O
+@[reducible] def ThomGame.Quantum.LocalSpace : ℕ → Type :=
+fun d => EuclideanSpace ℂ (Fin d)
+@[reducible] def ThomGame.Quantum.BipartiteSpace : ℕ → ℕ → Type :=
+fun d e => TensorProduct ℂ (LocalSpace d) (LocalSpace e)
+structure ThomGame.Quantum.FinitePOVMStrategy.{u_1, u_2, u_3, u_4} (X : Type u_1) (Y : Type u_2) (A : Type u_3)
+  (B : Type u_4) [Fintype A] [Fintype B] : Type (max (max (max u_1 u_2) u_3) u_4)
+number of parameters: 6
+fields:
+  ThomGame.Quantum.FinitePOVMStrategy.dimAlice : ℕ
+  ThomGame.Quantum.FinitePOVMStrategy.dimBob : ℕ
+  ThomGame.Quantum.FinitePOVMStrategy.dimAlice_pos : 0 < self.dimAlice
+  ThomGame.Quantum.FinitePOVMStrategy.dimBob_pos : 0 < self.dimBob
+  ThomGame.Quantum.FinitePOVMStrategy.state : BipartiteSpace self.dimAlice self.dimBob
+  ThomGame.Quantum.FinitePOVMStrategy.norm_state : ‖self.state‖ = 1
+  ThomGame.Quantum.FinitePOVMStrategy.alice : X → POVM (LocalSpace self.dimAlice) A
+  ThomGame.Quantum.FinitePOVMStrategy.bob : Y → POVM (LocalSpace self.dimBob) B
+constructor:
+  ThomGame.Quantum.FinitePOVMStrategy.mk.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_2} {A : Type u_3}
+    {B : Type u_4} [Fintype A] [Fintype B] (dimAlice dimBob : ℕ) (dimAlice_pos : 0 < dimAlice) (dimBob_pos : 0 < dimBob)
+    (state : BipartiteSpace dimAlice dimBob) (norm_state : ‖state‖ = 1) (alice : X → POVM (LocalSpace dimAlice) A)
+    (bob : Y → POVM (LocalSpace dimBob) B) : FinitePOVMStrategy X Y A B
+def ThomGame.Quantum.FinitePOVMStrategy.correlation.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} →
+        [inst : Fintype A] → [inst_1 : Fintype B] → FinitePOVMStrategy X Y A B → CorrelationTable X Y A B :=
+fun {X} {Y} {A} {B} [Fintype A] [Fintype B] S x y a b =>
+  (inner ℂ S.state ((TensorProduct.mapL ((S.alice x).effect a) ((S.bob y).effect b)) S.state)).re
+structure ThomGame.Quantum.CommutingPOVMStrategy.{u_1, u_2, u_3, u_4, u_5} (X : Type u_1) (Y : Type u_2) (A : Type u_3)
+  (B : Type u_4) (H : Type u_5) [Fintype A] [Fintype B] [NormedAddCommGroup H] [InnerProductSpace ℂ H] :
+  Type (max (max (max (max u_1 u_2) u_3) u_4) u_5)
+number of parameters: 9
+fields:
+  ThomGame.Quantum.CommutingPOVMStrategy.state : H
+  ThomGame.Quantum.CommutingPOVMStrategy.norm_state : ‖self.state‖ = 1
+  ThomGame.Quantum.CommutingPOVMStrategy.alice : X → POVM H A
+  ThomGame.Quantum.CommutingPOVMStrategy.bob : Y → POVM H B
+  ThomGame.Quantum.CommutingPOVMStrategy.commute : ∀ (x : X) (y : Y) (a : A) (b : B),
+      Commute ((self.alice x).effect a) ((self.bob y).effect b)
+constructor:
+  ThomGame.Quantum.CommutingPOVMStrategy.mk.{u_1, u_2, u_3, u_4, u_5} {X : Type u_1} {Y : Type u_2} {A : Type u_3}
+    {B : Type u_4} {H : Type u_5} [Fintype A] [Fintype B] [NormedAddCommGroup H] [InnerProductSpace ℂ H] (state : H)
+    (norm_state : ‖state‖ = 1) (alice : X → POVM H A) (bob : Y → POVM H B)
+    (commute : ∀ (x : X) (y : Y) (a : A) (b : B), Commute ((alice x).effect a) ((bob y).effect b)) :
+    CommutingPOVMStrategy X Y A B H
+def ThomGame.Quantum.CommutingPOVMStrategy.correlation.{u_1, u_2, u_3, u_4, u_5} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} →
+        {H : Type u_5} →
+          [inst : Fintype A] →
+            [inst_1 : Fintype B] →
+              [inst_2 : NormedAddCommGroup H] →
+                [inst_3 : InnerProductSpace ℂ H] → CommutingPOVMStrategy X Y A B H → CorrelationTable X Y A B :=
+fun {X} {Y} {A} {B} {H} [Fintype A] [Fintype B] [NormedAddCommGroup H] [InnerProductSpace ℂ H] S x y a b =>
+  (inner ℂ S.state (((S.alice x).effect a) (((S.bob y).effect b) S.state))).re
+def ThomGame.Quantum.povmQuantumCorrelations.{u_1, u_2, u_3, u_4} : (X : Type u_1) →
+  (Y : Type u_2) → (A : Type u_3) → (B : Type u_4) → [Fintype A] → [Fintype B] → Set (CorrelationTable X Y A B) :=
+fun X Y A B [Fintype A] [Fintype B] => Set.range FinitePOVMStrategy.correlation
+def ThomGame.Quantum.povmCommutingCorrelations.{u_1, u_2, u_3, u_4} : (X : Type u_1) →
+  (Y : Type u_2) → (A : Type u_3) → (B : Type u_4) → [Fintype A] → [Fintype B] → Set (CorrelationTable X Y A B) :=
+fun X Y A B [Fintype A] [Fintype B] => {p | ∃ H x x_1, ∃ (_ : CompleteSpace H), ∃ S, S.correlation = p}
+def ThomGame.Quantum.FiniteGame.value.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} →
+        [inst : Fintype X] →
+          [inst_1 : Fintype Y] → [Fintype A] → [Fintype B] → FiniteGame X Y A B → Set (CorrelationTable X Y A B) → ℝ :=
+fun {X} {Y} {A} {B} [Fintype X] [Fintype Y] [Fintype A] [Fintype B] G K => sSup (G.success '' K)
+def ThomGame.Quantum.FiniteGame.omegaQPOVM.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} → [Fintype A] → [Fintype B] → [inst : Fintype X] → [inst_1 : Fintype Y] → FiniteGame X Y A B → ℝ :=
+fun {X} {Y} {A} {B} [Fintype A] [Fintype B] [Fintype X] [Fintype Y] G => G.value (povmQuantumCorrelations X Y A B)
+def ThomGame.Quantum.FiniteGame.omegaQcPOVM.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} → [Fintype A] → [Fintype B] → [inst : Fintype X] → [inst_1 : Fintype Y] → FiniteGame X Y A B → ℝ :=
+fun {X} {Y} {A} {B} [Fintype A] [Fintype B] [Fintype X] [Fintype Y] G => G.value (povmCommutingCorrelations X Y A B)
+@FinitePOVMStrategy.exists_coordinates : ∀ {X : Type u_1} {Y : Type u_2} {A : Type u_3} {B : Type u_4} {H : Type u_5}
+  {K : Type u_6} [inst : Fintype A] [inst_1 : Fintype B] [inst_2 : NormedAddCommGroup H]
+  [inst_3 : InnerProductSpace ℂ H] [FiniteDimensional ℂ H] [inst_5 : NormedAddCommGroup K]
+  [inst_6 : InnerProductSpace ℂ K] [FiniteDimensional ℂ K] (ψ : TensorProduct ℂ H K),
+  ‖ψ‖ = 1 →
+    ∀ (M : X → POVM H A) (N : Y → POVM K B),
+      ∃ S, S.correlation = fun x y a b => (inner ℂ ψ ((TensorProduct.mapL ((M x).effect a) ((N y).effect b)) ψ)).re
+theorem SeparationCheck.separation : ∃ X Y A B x x_1 x_2 x_3 G,
+  (∀ (x_4 : X) (y : Y) (a : A) (b : B), G.payoff x_4 y a b = 0 ∨ G.payoff x_4 y a b = 1) ∧
+    G.omegaQcPOVM = 1 ∧ G.omegaQPOVM < 1 :=
+exists_finiteGame_povm_quantum_commuting_separation
+theorem SeparationCheck.binary_separation : ∃ X Y A B x x_1 x_2 x_3 G,
+  Nonempty X ∧
+    Nonempty Y ∧
+      Nonempty A ∧
+        Nonempty B ∧
+          (∀ (x_4 : X) (y : Y) (a : A) (b : B), G.payoff x_4 y a b = 0 ∨ G.payoff x_4 y a b = 1) ∧
+            G.omegaQcPOVM = 1 ∧ G.omegaQPOVM < 1 :=
+⋯
+'SeparationCheck.separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SeparationCheck.binary_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThomGame.Quantum.FinitePOVMStrategy.exists_coordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+Separation check passed: explicit statements, nonempty binary game, and standard axioms only.

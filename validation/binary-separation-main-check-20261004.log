@@ -1,0 +1,411 @@
+def ThomGame.Construction.paperSystem : ThomGame.SparseSystem.{0, 0} (Fin 1417152) (Fin 1889684) :=
+ThomGame.SparseSystem.ordered.{0, 0} ThomGame.Construction.numberedSystem
+def ThomGame.Construction.paperGame : ThomGame.Quantum.FiniteGame.{0, 0, 0, 0} (Fin 1417152) (Fin 1889684)
+  (Fin 3 → ZMod 2) (ZMod 2) :=
+ThomGame.SparseSystem.incidenceGame.{0, 0} ThomGame.Construction.paperSystem
+def ThomGame.SolutionGroup.Paper.relatorWord.{u_1, u_2} : {R : Type u_1} →
+  {C : Type u_2} →
+    ThomGame.SparseSystem.{u_1, u_2} R C →
+      ThomGame.SolutionGroup.Paper.RelationTag.{u_1, u_2} R C →
+        ThomGame.Word.{u_2} (ThomGame.SolutionGroup.Generator.{u_2} C) :=
+fun {R} {C} S x =>
+  match x with
+  | ThomGame.SolutionGroup.Paper.RelationTag.centralSquare.{u_1, u_2} =>
+    HAppend.hAppend.{u_2, u_2, u_2} ThomGame.SolutionGroup.centralWord.{u_2} ThomGame.SolutionGroup.centralWord.{u_2}
+  | ThomGame.SolutionGroup.Paper.RelationTag.variableSquare.{u_1, u_2} c =>
+    HAppend.hAppend.{u_2, u_2, u_2} (ThomGame.SolutionGroup.variableWord.{u_2} c)
+      (ThomGame.SolutionGroup.variableWord.{u_2} c)
+  | ThomGame.SolutionGroup.Paper.RelationTag.centralCommutes.{u_1, u_2} c =>
+    ThomGame.Word.commutator.{u_2} (ThomGame.SolutionGroup.variableWord.{u_2} c)
+      ThomGame.SolutionGroup.centralWord.{u_2}
+  | ThomGame.SolutionGroup.Paper.RelationTag.rowCommutes.{u_1, u_2} r p =>
+    ThomGame.Word.commutator.{u_2}
+      (ThomGame.SolutionGroup.variableWord.{u_2} (ThomGame.SparseSystem.column.{u_1, u_2} S r (↑p).1))
+      (ThomGame.SolutionGroup.variableWord.{u_2} (ThomGame.SparseSystem.column.{u_1, u_2} S r (↑p).2))
+  | ThomGame.SolutionGroup.Paper.RelationTag.rowEquation.{u_1, u_2} r =>
+    ThomGame.Word.equation.{u_2} (ThomGame.SolutionGroup.rowWord.{u_1, u_2} S r)
+      (ThomGame.SolutionGroup.rhsWord.{u_1, u_2} S r)
+def ThomGame.SolutionGroup.Paper.relators.{u_1, u_2} : {R : Type u_1} →
+  {C : Type u_2} →
+    ThomGame.SparseSystem.{u_1, u_2} R C → Set.{u_2} (FreeGroup.{u_2} (ThomGame.SolutionGroup.Generator.{u_2} C)) :=
+fun {R} {C} S =>
+  Set.range.{u_2, max (u_1 + 1) (u_2 + 1)} fun tag =>
+    FreeGroup.mk.{u_2} (ThomGame.SolutionGroup.Paper.relatorWord.{u_1, u_2} S tag)
+@[reducible] def ThomGame.Analysis.MatrixAssignment.{u_1} : Type u_1 → ℕ → Type (max u_1 0) :=
+fun S d => MonoidHom.{u_1, 0} (FreeGroup.{u_1} S) ↥(ThomGame.Analysis.UnitaryMatrix d)
+def ThomGame.Analysis.IsApproxRepresentation.{u_1} : {S : Type u_1} →
+  {d : ℕ} → Set.{u_1} (FreeGroup.{u_1} S) → ℝ → ThomGame.Analysis.MatrixAssignment.{u_1} S d → Prop :=
+fun {S} {d} rels δ f =>
+  ∀ (r : FreeGroup.{u_1} S), Membership.mem.{u_1, u_1} rels r → LE.le.{0} (ThomGame.Analysis.unitaryLength (f r)) δ
+def ThomGame.Analysis.hsNorm : {d : ℕ} → ThomGame.Analysis.CMatrix d → ℝ :=
+fun {d} A => HDiv.hDiv.{0, 0, 0} (norm.{0} A) √↑d
+def ThomGame.Analysis.negativeCentralAssignment.{u_2} : {C : Type u_2} →
+  {d : ℕ} →
+    (C → ↥(ThomGame.Analysis.UnitaryMatrix d)) →
+      ThomGame.Analysis.MatrixAssignment.{u_2} (ThomGame.SolutionGroup.Generator.{u_2} C) d :=
+fun {C} {d} x => FreeGroup.lift.{u_2, 0} fun a => Option.elim.{u_2, 1} a (-1) x
+structure ThomGame.Quantum.FiniteStrategy.{u_1, u_2, u_3, u_4} (X : Type u_1) (Y : Type u_2) (A : Type u_3)
+  (B : Type u_4) [Fintype.{u_3} A] [Fintype.{u_4} B] : Type (max (max (max u_1 u_2) u_3) u_4)
+number of parameters: 6
+fields:
+  ThomGame.Quantum.FiniteStrategy.dimAlice.{u_1, u_2, u_3, u_4} : ℕ
+  ThomGame.Quantum.FiniteStrategy.dimBob.{u_1, u_2, u_3, u_4} : ℕ
+  ThomGame.Quantum.FiniteStrategy.dimAlice_pos.{u_1, u_2, u_3,
+    u_4} : LT.lt.{0} 0 (ThomGame.Quantum.FiniteStrategy.dimAlice.{u_1, u_2, u_3, u_4} self)
+  ThomGame.Quantum.FiniteStrategy.dimBob_pos.{u_1, u_2, u_3,
+    u_4} : LT.lt.{0} 0 (ThomGame.Quantum.FiniteStrategy.dimBob.{u_1, u_2, u_3, u_4} self)
+  ThomGame.Quantum.FiniteStrategy.state.{u_1, u_2, u_3,
+    u_4} : ThomGame.Quantum.BipartiteSpace (ThomGame.Quantum.FiniteStrategy.dimAlice.{u_1, u_2, u_3, u_4} self)
+      (ThomGame.Quantum.FiniteStrategy.dimBob.{u_1, u_2, u_3, u_4} self)
+  ThomGame.Quantum.FiniteStrategy.norm_state.{u_1, u_2, u_3,
+    u_4} : Eq.{1} (norm.{0} (ThomGame.Quantum.FiniteStrategy.state.{u_1, u_2, u_3, u_4} self)) 1
+  ThomGame.Quantum.FiniteStrategy.alice.{u_1, u_2, u_3,
+    u_4} : X →
+      ThomGame.Quantum.ProjectiveMeasurement.{0, u_3}
+        (ThomGame.Quantum.LocalSpace (ThomGame.Quantum.FiniteStrategy.dimAlice.{u_1, u_2, u_3, u_4} self)) A
+  ThomGame.Quantum.FiniteStrategy.bob.{u_1, u_2, u_3,
+    u_4} : Y →
+      ThomGame.Quantum.ProjectiveMeasurement.{0, u_4}
+        (ThomGame.Quantum.LocalSpace (ThomGame.Quantum.FiniteStrategy.dimBob.{u_1, u_2, u_3, u_4} self)) B
+constructor:
+  ThomGame.Quantum.FiniteStrategy.mk.{u_1, u_2, u_3, u_4} {X : Type u_1} {Y : Type u_2} {A : Type u_3} {B : Type u_4}
+    [Fintype.{u_3} A] [Fintype.{u_4} B] (dimAlice dimBob : ℕ) (dimAlice_pos : LT.lt.{0} 0 dimAlice)
+    (dimBob_pos : LT.lt.{0} 0 dimBob) (state : ThomGame.Quantum.BipartiteSpace dimAlice dimBob)
+    (norm_state : Eq.{1} (norm.{0} state) 1)
+    (alice : X → ThomGame.Quantum.ProjectiveMeasurement.{0, u_3} (ThomGame.Quantum.LocalSpace dimAlice) A)
+    (bob : Y → ThomGame.Quantum.ProjectiveMeasurement.{0, u_4} (ThomGame.Quantum.LocalSpace dimBob) B) :
+    ThomGame.Quantum.FiniteStrategy.{u_1, u_2, u_3, u_4} X Y A B
+structure ThomGame.Quantum.CommutingStrategy.{u_1, u_2, u_3, u_4, u_5} (X : Type u_1) (Y : Type u_2) (A : Type u_3)
+  (B : Type u_4) (H : Type u_5) [Fintype.{u_3} A] [Fintype.{u_4} B] [NormedAddCommGroup.{u_5} H]
+  [InnerProductSpace.{0, u_5} ℂ H] [CompleteSpace.{u_5} H] : Type (max (max (max (max u_1 u_2) u_3) u_4) u_5)
+number of parameters: 10
+fields:
+  ThomGame.Quantum.CommutingStrategy.state.{u_1, u_2, u_3, u_4, u_5} : H
+  ThomGame.Quantum.CommutingStrategy.norm_state.{u_1, u_2, u_3, u_4,
+    u_5} : Eq.{1} (norm.{u_5} (ThomGame.Quantum.CommutingStrategy.state.{u_1, u_2, u_3, u_4, u_5} self)) 1
+  ThomGame.Quantum.CommutingStrategy.alice.{u_1, u_2, u_3, u_4,
+    u_5} : X → ThomGame.Quantum.ProjectiveMeasurement.{u_5, u_3} H A
+  ThomGame.Quantum.CommutingStrategy.bob.{u_1, u_2, u_3, u_4,
+    u_5} : Y → ThomGame.Quantum.ProjectiveMeasurement.{u_5, u_4} H B
+  ThomGame.Quantum.CommutingStrategy.commute.{u_1, u_2, u_3, u_4,
+    u_5} : ∀ (x : X) (y : Y) (a : A) (b : B),
+      Commute.{u_5}
+        (ThomGame.Quantum.ProjectiveMeasurement.proj.{u_5, u_3}
+          (ThomGame.Quantum.CommutingStrategy.alice.{u_1, u_2, u_3, u_4, u_5} self x) a)
+        (ThomGame.Quantum.ProjectiveMeasurement.proj.{u_5, u_4}
+          (ThomGame.Quantum.CommutingStrategy.bob.{u_1, u_2, u_3, u_4, u_5} self y) b)
+constructor:
+  ThomGame.Quantum.CommutingStrategy.mk.{u_1, u_2, u_3, u_4, u_5} {X : Type u_1} {Y : Type u_2} {A : Type u_3}
+    {B : Type u_4} {H : Type u_5} [Fintype.{u_3} A] [Fintype.{u_4} B] [NormedAddCommGroup.{u_5} H]
+    [InnerProductSpace.{0, u_5} ℂ H] [CompleteSpace.{u_5} H] (state : H) (norm_state : Eq.{1} (norm.{u_5} state) 1)
+    (alice : X → ThomGame.Quantum.ProjectiveMeasurement.{u_5, u_3} H A)
+    (bob : Y → ThomGame.Quantum.ProjectiveMeasurement.{u_5, u_4} H B)
+    (commute :
+      ∀ (x : X) (y : Y) (a : A) (b : B),
+        Commute.{u_5} (ThomGame.Quantum.ProjectiveMeasurement.proj.{u_5, u_3} (alice x) a)
+          (ThomGame.Quantum.ProjectiveMeasurement.proj.{u_5, u_4} (bob y) b)) :
+    ThomGame.Quantum.CommutingStrategy.{u_1, u_2, u_3, u_4, u_5} X Y A B H
+def ThomGame.Quantum.quantumCorrelations.{u_1, u_2, u_3, u_4} : (X : Type u_1) →
+  (Y : Type u_2) →
+    (A : Type u_3) →
+      (B : Type u_4) →
+        [Fintype.{u_3} A] →
+          [Fintype.{u_4} B] →
+            Set.{max (max (max u_4 u_3) u_2) u_1} (ThomGame.Quantum.CorrelationTable.{u_1, u_2, u_3, u_4} X Y A B) :=
+fun X Y A B [Fintype.{u_3} A] [Fintype.{u_4} B] =>
+  Set.range.{max (max (max u_1 u_2) u_3) u_4, max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)}
+    ThomGame.Quantum.FiniteStrategy.correlation.{u_1, u_2, u_3, u_4}
+def ThomGame.Quantum.approximateQuantumCorrelations.{u_1, u_2, u_3, u_4} : (X : Type u_1) →
+  (Y : Type u_2) →
+    (A : Type u_3) →
+      (B : Type u_4) →
+        [Fintype.{u_3} A] →
+          [Fintype.{u_4} B] →
+            Set.{max (max (max u_4 u_3) u_2) u_1} (ThomGame.Quantum.CorrelationTable.{u_1, u_2, u_3, u_4} X Y A B) :=
+fun X Y A B [Fintype.{u_3} A] [Fintype.{u_4} B] =>
+  closure.{max (max (max u_1 u_2) u_3) u_4} (ThomGame.Quantum.quantumCorrelations.{u_1, u_2, u_3, u_4} X Y A B)
+def ThomGame.Quantum.commutingCorrelations.{u_1, u_2, u_3, u_4} : (X : Type u_1) →
+  (Y : Type u_2) →
+    (A : Type u_3) →
+      (B : Type u_4) →
+        [Fintype.{u_3} A] →
+          [Fintype.{u_4} B] →
+            Set.{max (max (max u_4 u_3) u_2) u_1} (ThomGame.Quantum.CorrelationTable.{u_1, u_2, u_3, u_4} X Y A B) :=
+fun X Y A B [Fintype.{u_3} A] [Fintype.{u_4} B] =>
+  Set.ofPred.{max (max (max u_1 u_2) u_3) u_4} fun p =>
+    ∃ H x x_1,
+      ∃ (x_2 : CompleteSpace.{0} H),
+        ∃ S,
+          Eq.{max (max (max (u_1 + 1) (u_2 + 1)) (u_3 + 1)) (u_4 + 1)}
+            (ThomGame.Quantum.CommutingStrategy.correlation.{u_1, u_2, u_3, u_4, 0} S) p
+def ThomGame.Quantum.FiniteGame.success.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} →
+        [inst : Fintype.{u_1} X] →
+          [inst_1 : Fintype.{u_2} Y] →
+            [Fintype.{u_3} A] →
+              [Fintype.{u_4} B] →
+                ThomGame.Quantum.FiniteGame.{u_1, u_2, u_3, u_4} X Y A B →
+                  ThomGame.Quantum.CorrelationTable.{u_1, u_2, u_3, u_4} X Y A B → ℝ :=
+fun {X} {Y} {A} {B} [Fintype.{u_1} X] [Fintype.{u_2} Y] [Fintype.{u_3} A] [Fintype.{u_4} B] G p =>
+  ∑ x,
+    ∑ y,
+      HMul.hMul.{0, 0, 0} (ThomGame.Quantum.FiniteGame.weight.{u_1, u_2, u_3, u_4} G x y)
+        (ThomGame.Quantum.FiniteGame.answerScore.{u_1, u_2, u_3, u_4} G p x y)
+def ThomGame.Quantum.FiniteGame.value.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} →
+        [inst : Fintype.{u_1} X] →
+          [inst_1 : Fintype.{u_2} Y] →
+            [Fintype.{u_3} A] →
+              [Fintype.{u_4} B] →
+                ThomGame.Quantum.FiniteGame.{u_1, u_2, u_3, u_4} X Y A B →
+                  Set.{max (max (max u_4 u_3) u_2) u_1}
+                      (ThomGame.Quantum.CorrelationTable.{u_1, u_2, u_3, u_4} X Y A B) →
+                    ℝ :=
+fun {X} {Y} {A} {B} [Fintype.{u_1} X] [Fintype.{u_2} Y] [Fintype.{u_3} A] [Fintype.{u_4} B] G K =>
+  sSup.{0}
+    (Set.image.{max (max (max u_1 u_2) u_3) u_4, 0} (ThomGame.Quantum.FiniteGame.success.{u_1, u_2, u_3, u_4} G) K)
+def ThomGame.Quantum.FiniteGame.omegaQ.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} →
+        [inst : Fintype.{u_1} X] →
+          [inst_1 : Fintype.{u_2} Y] →
+            [Fintype.{u_3} A] → [Fintype.{u_4} B] → ThomGame.Quantum.FiniteGame.{u_1, u_2, u_3, u_4} X Y A B → ℝ :=
+fun {X} {Y} {A} {B} [Fintype.{u_1} X] [Fintype.{u_2} Y] [Fintype.{u_3} A] [Fintype.{u_4} B] G =>
+  ThomGame.Quantum.FiniteGame.value.{u_1, u_2, u_3, u_4} G
+    (ThomGame.Quantum.quantumCorrelations.{u_1, u_2, u_3, u_4} X Y A B)
+def ThomGame.Quantum.FiniteGame.omegaQa.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} →
+        [inst : Fintype.{u_1} X] →
+          [inst_1 : Fintype.{u_2} Y] →
+            [Fintype.{u_3} A] → [Fintype.{u_4} B] → ThomGame.Quantum.FiniteGame.{u_1, u_2, u_3, u_4} X Y A B → ℝ :=
+fun {X} {Y} {A} {B} [Fintype.{u_1} X] [Fintype.{u_2} Y] [Fintype.{u_3} A] [Fintype.{u_4} B] G =>
+  ThomGame.Quantum.FiniteGame.value.{u_1, u_2, u_3, u_4} G
+    (ThomGame.Quantum.approximateQuantumCorrelations.{u_1, u_2, u_3, u_4} X Y A B)
+def ThomGame.Quantum.FiniteGame.omegaQc.{u_1, u_2, u_3, u_4} : {X : Type u_1} →
+  {Y : Type u_2} →
+    {A : Type u_3} →
+      {B : Type u_4} →
+        [inst : Fintype.{u_1} X] →
+          [inst_1 : Fintype.{u_2} Y] →
+            [Fintype.{u_3} A] → [Fintype.{u_4} B] → ThomGame.Quantum.FiniteGame.{u_1, u_2, u_3, u_4} X Y A B → ℝ :=
+fun {X} {Y} {A} {B} [Fintype.{u_1} X] [Fintype.{u_2} Y] [Fintype.{u_3} A] [Fintype.{u_4} B] G =>
+  ThomGame.Quantum.FiniteGame.value.{u_1, u_2, u_3, u_4} G
+    (ThomGame.Quantum.commutingCorrelations.{u_1, u_2, u_3, u_4} X Y A B)
+@ThomGame.Analysis.exists_matrixCompression_unitary : ∀ {d k : ℕ} {F : Matrix.{0, 0, 0} (Fin d) (Fin k) ℂ}
+  {P : ThomGame.Analysis.CMatrix d} (r : ℕ),
+  IsStarProjection.{0} P →
+    Eq.{1} (HMul.hMul.{0, 0, 0} (Matrix.conjTranspose.{0, 0, 0} F) F) 1 →
+      Eq.{1} (HMul.hMul.{0, 0, 0} F (Matrix.conjTranspose.{0, 0, 0} F)) P →
+        ∀ (U : ↥(ThomGame.Analysis.UnitaryMatrix d)),
+          ∃ V,
+            LE.le.{0}
+              (ThomGame.Analysis.rectHSNorm.{0, 0} r
+                (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} (↑U) F) (HMul.hMul.{0, 0, 0} F ↑V)))
+              (HMul.hMul.{0, 0, 0} 2
+                (ThomGame.Analysis.rectHSNorm.{0, 0} r
+                  (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} P ↑U) (HMul.hMul.{0, 0, 0} (↑U) P))))
+@ThomGame.Analysis.matrixIntertwiningError_mul_le : ∀ {d k : ℕ} (r : ℕ) (F : Matrix.{0, 0, 0} (Fin d) (Fin k) ℂ)
+  (U W : ↥(ThomGame.Analysis.UnitaryMatrix d)) (V Z : ↥(ThomGame.Analysis.UnitaryMatrix k)),
+  LE.le.{0} (ThomGame.Analysis.matrixIntertwiningError r F (HMul.hMul.{0, 0, 0} U W) (HMul.hMul.{0, 0, 0} V Z))
+    (HAdd.hAdd.{0, 0, 0} (ThomGame.Analysis.matrixIntertwiningError r F U V)
+      (ThomGame.Analysis.matrixIntertwiningError r F W Z))
+@ThomGame.Analysis.matrixIntertwiningError_inv : ∀ {d k : ℕ} (r : ℕ) (F : Matrix.{0, 0, 0} (Fin d) (Fin k) ℂ)
+  (U : ↥(ThomGame.Analysis.UnitaryMatrix d)) (V : ↥(ThomGame.Analysis.UnitaryMatrix k)),
+  Eq.{1} (ThomGame.Analysis.matrixIntertwiningError r F (Inv.inv.{0} U) (Inv.inv.{0} V))
+    (ThomGame.Analysis.matrixIntertwiningError r F U V)
+@ThomGame.Analysis.matrixIntertwiningError_relation_le : ∀ {d k : ℕ} (r : ℕ) (F : Matrix.{0, 0, 0} (Fin d) (Fin k) ℂ),
+  Eq.{1} (HMul.hMul.{0, 0, 0} (Matrix.conjTranspose.{0, 0, 0} F) F) 1 →
+    ∀ (U : ↥(ThomGame.Analysis.UnitaryMatrix d)) (V : ↥(ThomGame.Analysis.UnitaryMatrix k)) (z : ℂ),
+      LE.le.{0} (ThomGame.Analysis.rectHSNorm.{0, 0} r (HSub.hSub.{0, 0, 0} (↑V) (HSMul.hSMul.{0, 0, 0} z 1)))
+        (HAdd.hAdd.{0, 0, 0} (ThomGame.Analysis.matrixIntertwiningError r F U V)
+          (ThomGame.Analysis.rectHSNorm.{0, 0} r
+            (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} (↑U) (HSMul.hSMul.{0, 0, 0} z 1)) F)))
+@ThomGame.Analysis.matrixIntertwiningError_difference_le : ∀ {d k : ℕ} (r : ℕ) (F : Matrix.{0, 0, 0} (Fin d) (Fin k) ℂ),
+  Eq.{1} (HMul.hMul.{0, 0, 0} (Matrix.conjTranspose.{0, 0, 0} F) F) 1 →
+    ∀ (U W : ↥(ThomGame.Analysis.UnitaryMatrix d)) (V Z : ↥(ThomGame.Analysis.UnitaryMatrix k)),
+      LE.le.{0} (ThomGame.Analysis.rectHSNorm.{0, 0} r (HSub.hSub.{0, 0, 0} ↑V ↑Z))
+        (HAdd.hAdd.{0, 0, 0}
+          (HAdd.hAdd.{0, 0, 0} (ThomGame.Analysis.matrixIntertwiningError r F U V)
+            (ThomGame.Analysis.matrixIntertwiningError r F W Z))
+          (ThomGame.Analysis.rectHSNorm.{0, 0} r (HMul.hMul.{0, 0, 0} (HSub.hSub.{0, 0, 0} ↑U ↑W) F)))
+@ThomGame.Analysis.rectHSNorm_rank_le_of_relative.{u_1,
+    u_2} : ∀ {d : ℕ} {P : ThomGame.Analysis.CMatrix d},
+  IsStarProjection.{0} P →
+    Ne.{1} P 0 →
+      ∀ {ι : Type u_1} {κ : Type u_2} [inst : Fintype.{u_1} ι] [inst_1 : Fintype.{u_2} κ]
+        (X : Matrix.{u_1, u_2, 0} ι κ ℂ) {η : ℝ},
+        LE.le.{0} 0 η →
+          LE.le.{0} (HPow.hPow.{0, 0, 0} (ThomGame.Analysis.rectHSNorm.{u_1, u_2} 1 X) 2)
+              (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} η 2)
+                (HPow.hPow.{0, 0, 0} (ThomGame.Analysis.rectHSNorm.{0, 0} 1 P) 2)) →
+            LE.le.{0} (ThomGame.Analysis.rectHSNorm.{u_1, u_2} (Matrix.rank.{0, 0, 0} P) X) η
+@ThomGame.SparseSystem.near_perfect_unitary_relations.{u_1,
+    u_2} : ∀ {R : Type u_1} {C : Type u_2} [inst : Fintype.{u_1} R] [inst_1 : Nonempty.{u_1 + 1} R]
+  [inst_2 : Fintype.{u_2} C] [inst_3 : LinearOrder.{u_2} C] (S : ThomGame.SparseSystem.{u_1, u_2} R C) {δ : ℝ},
+  LT.lt.{0} 0 δ →
+    ∃ ε,
+      GT.gt.{0} ε 0 ∧
+        ∀ (T : ThomGame.Quantum.FiniteStrategy.{u_1, u_2, 0, 0} R C (Fin 3 → ZMod 2) (ZMod 2)),
+          LE.le.{0} (HSub.hSub.{0, 0, 0} 1 ε)
+              (ThomGame.Quantum.FiniteGame.success.{u_1, u_2, 0, 0} (ThomGame.SparseSystem.incidenceGame.{u_1, u_2} S)
+                (ThomGame.Quantum.FiniteStrategy.correlation.{u_1, u_2, 0, 0} T)) →
+            ∃ k,
+              LT.lt.{0} 0 k ∧
+                ∃ x,
+                  (∀ (c : C),
+                      LE.le.{0} (ThomGame.Analysis.hsNorm (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} ↑(x c) ↑(x c)) 1))
+                        δ) ∧
+                    (∀ (r : R),
+                        LE.le.{0}
+                          (ThomGame.Analysis.hsNorm
+                            (HSub.hSub.{0, 0, 0}
+                              (HMul.hMul.{0, 0, 0}
+                                (HMul.hMul.{0, 0, 0} ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r 0))
+                                  ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r 1)))
+                                ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r 2)))
+                              (HSMul.hSMul.{0, 0, 0}
+                                (ThomGame.Quantum.bitSign (ThomGame.SparseSystem.rhs.{u_1, u_2} S r)) 1)))
+                          δ) ∧
+                      ∀ (r : R) (i j : Fin 3),
+                        LE.le.{0}
+                          (ThomGame.Analysis.hsNorm
+                            (HSub.hSub.{0, 0, 0}
+                              (HMul.hMul.{0, 0, 0} ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r i))
+                                ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r j)))
+                              (HMul.hMul.{0, 0, 0} ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r j))
+                                ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r i)))))
+                          δ
+@ThomGame.Analysis.negativeCentralAssignment_isApprox.{u_1,
+    u_2} : ∀ {R : Type u_1} {C : Type u_2} {d : ℕ} (S : ThomGame.SparseSystem.{u_1, u_2} R C)
+  (x : C → ↥(ThomGame.Analysis.UnitaryMatrix d)) {δ : ℝ},
+  LE.le.{0} 0 δ →
+    (∀ (c : C), LE.le.{0} (ThomGame.Analysis.hsNorm (HSub.hSub.{0, 0, 0} (HMul.hMul.{0, 0, 0} ↑(x c) ↑(x c)) 1)) δ) →
+      (∀ (r : R),
+          LE.le.{0}
+            (ThomGame.Analysis.hsNorm
+              (HSub.hSub.{0, 0, 0}
+                (HMul.hMul.{0, 0, 0}
+                  (HMul.hMul.{0, 0, 0} ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r 0))
+                    ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r 1)))
+                  ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r 2)))
+                (HSMul.hSMul.{0, 0, 0} (ThomGame.Quantum.bitSign (ThomGame.SparseSystem.rhs.{u_1, u_2} S r)) 1)))
+            δ) →
+        (∀ (r : R) (i j : Fin 3),
+            LE.le.{0}
+              (ThomGame.Analysis.hsNorm
+                (HSub.hSub.{0, 0, 0}
+                  (HMul.hMul.{0, 0, 0} ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r i))
+                    ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r j)))
+                  (HMul.hMul.{0, 0, 0} ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r j))
+                    ↑(x (ThomGame.SparseSystem.column.{u_1, u_2} S r i)))))
+              δ) →
+          ThomGame.Analysis.IsApproxRepresentation.{u_2} (ThomGame.SolutionGroup.Paper.relators.{u_1, u_2} S) δ
+            (ThomGame.Analysis.negativeCentralAssignment.{u_2} x)
+@ThomGame.SparseSystem.near_perfect_approximation.{u_1,
+    u_2} : ∀ {R : Type u_1} {C : Type u_2} [inst : Fintype.{u_1} R] [inst_1 : Nonempty.{u_1 + 1} R]
+  [inst_2 : Fintype.{u_2} C] [inst_3 : LinearOrder.{u_2} C] (S : ThomGame.SparseSystem.{u_1, u_2} R C) {δ : ℝ},
+  LT.lt.{0} 0 δ →
+    ∃ ε,
+      GT.gt.{0} ε 0 ∧
+        ∀ (T : ThomGame.Quantum.FiniteStrategy.{u_1, u_2, 0, 0} R C (Fin 3 → ZMod 2) (ZMod 2)),
+          LE.le.{0} (HSub.hSub.{0, 0, 0} 1 ε)
+              (ThomGame.Quantum.FiniteGame.success.{u_1, u_2, 0, 0} (ThomGame.SparseSystem.incidenceGame.{u_1, u_2} S)
+                (ThomGame.Quantum.FiniteStrategy.correlation.{u_1, u_2, 0, 0} T)) →
+            ∃ d,
+              LT.lt.{0} 0 d ∧
+                ∃ f,
+                  ThomGame.Analysis.IsApproxRepresentation.{u_2} (ThomGame.SolutionGroup.Paper.relators.{u_1, u_2} S) δ
+                      f ∧
+                    Eq.{1} (f (FreeGroup.of.{u_2} none.{u_2})) (-1)
+@ThomGame.Construction.paper_near_perfect_approximation : ∀ {δ : ℝ},
+  LT.lt.{0} 0 δ →
+    ∃ ε,
+      GT.gt.{0} ε 0 ∧
+        ∀ (T : ThomGame.Quantum.FiniteStrategy.{0, 0, 0, 0} (Fin 1417152) (Fin 1889684) (Fin 3 → ZMod 2) (ZMod 2)),
+          LE.le.{0} (HSub.hSub.{0, 0, 0} 1 ε)
+              (ThomGame.Quantum.FiniteGame.success.{0, 0, 0, 0} ThomGame.Construction.paperGame
+                (ThomGame.Quantum.FiniteStrategy.correlation.{0, 0, 0, 0} T)) →
+            ∃ d,
+              LT.lt.{0} 0 d ∧
+                ∃ f,
+                  ThomGame.Analysis.IsApproxRepresentation.{0}
+                      (ThomGame.SolutionGroup.Paper.relators.{0, 0} ThomGame.Construction.paperSystem) δ f ∧
+                    Eq.{1} (f (FreeGroup.of.{0} none.{0})) (-1)
+ThomGame.Construction.paper_uniform_quantum_gap : ∃ ε,
+  LT.lt.{0} 0 ε ∧
+    ∀ (T : ThomGame.Quantum.FiniteStrategy.{0, 0, 0, 0} (Fin 1417152) (Fin 1889684) (Fin 3 → ZMod 2) (ZMod 2)),
+      LT.lt.{0}
+        (ThomGame.Quantum.FiniteGame.success.{0, 0, 0, 0} ThomGame.Construction.paperGame
+          (ThomGame.Quantum.FiniteStrategy.correlation.{0, 0, 0, 0} T))
+        (HSub.hSub.{0, 0, 0} 1 ε)
+ThomGame.Construction.paper_omegaQ_lt_one : LT.lt.{0}
+  (ThomGame.Quantum.FiniteGame.omegaQ.{0, 0, 0, 0} ThomGame.Construction.paperGame) 1
+ThomGame.Construction.paper_omegaQa_lt_one : LT.lt.{0}
+  (ThomGame.Quantum.FiniteGame.omegaQa.{0, 0, 0, 0} ThomGame.Construction.paperGame) 1
+ThomGame.Construction.paper_quantum_value_separation : Eq.{1}
+    (ThomGame.Quantum.FiniteGame.omegaQ.{0, 0, 0, 0} ThomGame.Construction.paperGame)
+    (ThomGame.Quantum.FiniteGame.omegaQa.{0, 0, 0, 0} ThomGame.Construction.paperGame) ∧
+  LT.lt.{0} (ThomGame.Quantum.FiniteGame.omegaQa.{0, 0, 0, 0} ThomGame.Construction.paperGame) 1 ∧
+    Eq.{1} (ThomGame.Quantum.FiniteGame.omegaQc.{0, 0, 0, 0} ThomGame.Construction.paperGame) 1
+ThomGame.Construction.paper_main_results : Ne.{1} ThomGame.Construction.paper_J_sigma 1 ∧
+  (∀ (η : ℝ),
+      LT.lt.{0} 0 η →
+        ∃ δ,
+          LT.lt.{0} 0 δ ∧
+            ∀ (d : ℕ),
+              LT.lt.{0} 0 d →
+                ∀ (f : ThomGame.Analysis.MatrixAssignment.{0} (ThomGame.SolutionGroup.Generator.{0} (Fin 1889684)) d),
+                  ThomGame.Analysis.IsApproxRepresentation.{0}
+                      (ThomGame.SolutionGroup.Paper.relators.{0, 0} ThomGame.Construction.paperSystem) δ f →
+                    LT.lt.{0} (ThomGame.Analysis.hsNorm (HSub.hSub.{0, 0, 0} (↑(f (FreeGroup.of.{0} none.{0}))) 1)) η) ∧
+    Eq.{1} (ThomGame.Quantum.FiniteGame.omegaQ.{0, 0, 0, 0} ThomGame.Construction.paperGame)
+        (ThomGame.Quantum.FiniteGame.omegaQa.{0, 0, 0, 0} ThomGame.Construction.paperGame) ∧
+      LT.lt.{0} (ThomGame.Quantum.FiniteGame.omegaQa.{0, 0, 0, 0} ThomGame.Construction.paperGame) 1 ∧
+        Eq.{1} (ThomGame.Quantum.FiniteGame.omegaQc.{0, 0, 0, 0} ThomGame.Construction.paperGame) 1
+'ThomGame.Construction.paper_main_results' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+'ThomGame.Construction.paper_quantum_value_separation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+'ThomGame.Construction.paper_uniform_quantum_gap' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+ThomGame.Construction.paper_main_results_povm :
+  Ne.{1} paper_J_sigma 1 ∧
+    (∀ (η : ℝ),
+        LT.lt.{0} 0 η →
+          ∃ δ,
+            LT.lt.{0} 0 δ ∧
+              ∀ (d : ℕ),
+                LT.lt.{0} 0 d →
+                  ∀ (f : MatrixAssignment.{0} (SolutionGroup.Generator.{0} (Fin 1889684)) d),
+                    IsApproxRepresentation.{0} (SolutionGroup.Paper.relators.{0, 0} paperSystem) δ f →
+                      LT.lt.{0} (hsNorm (HSub.hSub.{0, 0, 0} (↑(f (FreeGroup.of.{0} none.{0}))) 1)) η) ∧
+      Eq.{1} (FiniteGame.omegaQPOVM.{0, 0, 0, 0} paperGame) (FiniteGame.omegaQaPOVM.{0, 0, 0, 0} paperGame) ∧
+        LT.lt.{0} (FiniteGame.omegaQaPOVM.{0, 0, 0, 0} paperGame) 1 ∧
+          Eq.{1} (FiniteGame.omegaQcPOVM.{0, 0, 0, 0} paperGame) 1
+'ThomGame.Construction.paper_main_results_povm' depends on axioms: [propext, Classical.choice.{u}, Quot.sound.{u}]
+'ThomGame.Construction.paper_povm_quantum_value_separation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+ThomGame.Quantum.exists_finiteGame_quantum_commuting_separation :
+  ∃ X Y A B x x_1 x_2 x_3 G,
+    (∀ (x_4 : X) (y : Y) (a : A) (b : B),
+        Eq.{1} (FiniteGame.payoff.{0, 0, 0, 0} G x_4 y a b) 0 ∨ Eq.{1} (FiniteGame.payoff.{0, 0, 0, 0} G x_4 y a b) 1) ∧
+      Eq.{1} (FiniteGame.omegaQc.{0, 0, 0, 0} G) 1 ∧ LT.lt.{0} (FiniteGame.omegaQ.{0, 0, 0, 0} G) 1
+ThomGame.Quantum.exists_finiteGame_povm_quantum_commuting_separation :
+  ∃ X Y A B x x_1 x_2 x_3 G,
+    (∀ (x_4 : X) (y : Y) (a : A) (b : B),
+        Eq.{1} (FiniteGame.payoff.{0, 0, 0, 0} G x_4 y a b) 0 ∨ Eq.{1} (FiniteGame.payoff.{0, 0, 0, 0} G x_4 y a b) 1) ∧
+      Eq.{1} (FiniteGame.omegaQcPOVM.{0, 0, 0, 0} G) 1 ∧ LT.lt.{0} (FiniteGame.omegaQPOVM.{0, 0, 0, 0} G) 1
+'ThomGame.Quantum.exists_finiteGame_quantum_commuting_separation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+'ThomGame.Quantum.exists_finiteGame_povm_quantum_commuting_separation' depends on axioms: [propext,
+ Classical.choice.{u},
+ Quot.sound.{u}]
+Original and POVM main theorems and existential corollaries passed the axiom audit.
