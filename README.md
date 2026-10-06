@@ -46,8 +46,8 @@ Use the general POVM version for this route. Its definitions directly state the 
 The score and values are
 
 $$
-\operatorname{score}_G(p)=\sum_{x,y,a,b}\pi(x,y)V(x,y,a,b)p(a,b\mid x,y),
-\qquad \omega_t(G)=\sup_{p\in C_t}\operatorname{score}_G(p).
+\mathrm{score}_G(p)=\sum_{x,y,a,b}\pi(x,y)V(x,y,a,b)p(a,b\mid x,y),
+\qquad \omega_t(G)=\sup_{p\in C_t}\mathrm{score}_G(p).
 $$
 
 The state is independent of the questions; each player's measurement depends only on that player's question. Local dimensions have no fixed upper bound. The commuting model imposes no finite-dimensionality requirement and requires only cross-player commutation. The guide explains the pure-state convention and the verified passage from arbitrary finite-dimensional Hilbert spaces to coordinates.

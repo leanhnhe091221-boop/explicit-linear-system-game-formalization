@@ -46,8 +46,8 @@ lake env lean scripts/CheckSeparation.lean
 得分和 value 对应以下公式：
 
 $$
-\operatorname{score}_G(p)=\sum_{x,y,a,b}\pi(x,y)V(x,y,a,b)p(a,b\mid x,y),
-\qquad \omega_t(G)=\sup_{p\in C_t}\operatorname{score}_G(p).
+\mathrm{score}_G(p)=\sum_{x,y,a,b}\pi(x,y)V(x,y,a,b)p(a,b\mid x,y),
+\qquad \omega_t(G)=\sup_{p\in C_t}\mathrm{score}_G(p).
 $$
 
 共享态与问题无关；每位玩家的测量只依赖自己的问题。局部维数没有统一上界。对易模型没有有限维限制，只要求跨玩家对易。详细指南说明了纯态约定，以及任意有限维 Hilbert 空间到坐标模型的已验证转换。
